@@ -287,7 +287,7 @@
   },
   "email": {
     "toEncoded": "Z2lmdGdhcmRlbi45NUBwcm90b24ubWU=",
-    "formsubmit": true,
+    "formsubmit": false,
     "label": "GiftGarden",
     "mailClientDelaySeconds": 4
   },
