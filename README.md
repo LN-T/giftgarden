@@ -60,3 +60,7 @@ To set up a new installation, copy `assets/config-example.json` to `assets/confi
 Before the first submission, set `email.toEncoded` to your address encoded in base64 (for example `printf '%s' 'you@example.com' | base64`). The encoding only hides the address from simple scrapers: anyone reading the page code can still decode it. 
 On the first submission, FormSubmit writes to that address to activate it: click the link you receive. 
 Until it is activated, sending fails and the mail client opens instead.
+
+To switch FormSubmit off (for example while it is not working), set `email.formsubmit` to `false`: the **Confirm** button then opens the visitor's mail client directly, with the request prefilled, and the page shows a matching warning. Set it back to `true` to send through FormSubmit again.
+
+Whenever the mail client is used (FormSubmit switched off, or FormSubmit failed), the thank-you page is shown first and the mail client opens a few seconds later (`email.mailClientDelaySeconds`, 4 by default). The page also has an "Open my mail app" button, in case the browser blocks the automatic opening.

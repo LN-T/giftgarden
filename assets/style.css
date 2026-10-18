@@ -495,10 +495,21 @@ label {
 
 .thanks-actions {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
-    justify-content: center;
     margin-top: 20px
+}
+
+.thanks-actions .choice {
+    box-sizing: border-box;
+    width: min(100%, 20rem);
+    min-height: 3.25rem;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: center
 }
 
 .recap {
@@ -606,4 +617,50 @@ textarea {
     margin-top: 4px;
     color: var(--muted);
     font-style: italic
+}
+
+.warning {
+    margin: 12px 0 8px;
+    padding: 10px 12px;
+    border-left: 4px solid #d97706;
+    border-radius: 6px;
+    background: var(--card);
+    color: var(--ink);
+    font-weight: 600
+}
+
+.warning p {
+    margin: 0
+}
+
+.warning p + p {
+    margin-top: 6px;
+    font-weight: 400
+}
+
+.step-sub {
+    margin: -4px 0 10px;
+    color: var(--muted);
+    font-size: .85rem
+}
+
+#open-mail {
+    border-color: #16a34a;
+    background: #16a34a;
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(22, 163, 74, .45)
+}
+
+#open-mail:hover {
+    background: #15803d;
+    border-color: #15803d
+}
+
+.tree-static {
+    width: 130px;
+    margin: 16px auto;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--ink)
 }

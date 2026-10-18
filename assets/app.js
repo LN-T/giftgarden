@@ -118,6 +118,7 @@ function render() {
             el('div', {id: 'trees', class: 'trees'})),
         ...(cfg.customText?.enabled ? [el('section', {},
             el('h2', {}, T('steps.message')),
+            el('p', {class: 'step-sub'}, T('steps.messageSubtitle')),
             el('div', {class: 'stack'},
                 el('label', {}, T('messageLine1Label'),
                     el('input', {
@@ -251,15 +252,35 @@ function summaryList() {
 }
 
 // Thank-you page, shown after the request has been sent
+// Card of the chosen tree (photo, Latin name, name), same look as in the list but not clickable
+function treeCardStatic(x) {
+    return el('div', {class: isPremium(x) ? 'tree tree-static premium' : 'tree tree-static'},
+        x.image ? el('img', {src: x.image, alt: ''}) : el('div', {class: 'noimg'}, '🌳'),
+        ...(x.latin ? [el('em', {class: 'latin'}, x.latin)] : []),
+        el('span', {}, x.label));
+}
+
 function renderThanks() {
+    // The mail-client block (warning + button) is shown at once, while FormSubmit is still awaited or once it failed, so that
+    // it is already there when the mail client opens; it disappears if the sending is confirmed. All the buttons are
+    // disabled until the mail client has been opened (they stay disabled while FormSubmit is awaited).
+    const mailBlock = Boolean(pendingMail) || thanksState === 'pending';
+    const locked = thanksState === 'pending' || (Boolean(pendingMail) && !mailOpened);
+    const chosen = cfg.trees.find(x => x.id === sel.tree);
     document.getElementById('thanks').replaceChildren(
         el('div', {class: 'thanks-emoji', 'aria-hidden': 'true'}, '🌳'),
         el('h2', {}, T('thanks.title', {name: sel.name.trim()})),
-        el('p', {}, T('thanks.text')),
+        el('p', {}, T(thanksState === 'sent' ? 'thanks.text' : 'thanks.textMail')),
+        ...(chosen ? [treeCardStatic(chosen)] : []),
         summaryList(),
+        ...(mailBlock ? [el('div', {class: 'warning', role: 'note'}, el('p', {}, T('mailWarning')))] : []),
+        // All the buttons of this page share the same size (see .thanks-actions in style.css)
         el('div', {class: 'thanks-actions'},
-            el('button', {id: 'again', class: 'choice validate', onclick: () => resetForm('form')}, T('thanks.again')),
-            el('button', {id: 'thanks-home', class: 'choice', onclick: () => resetForm('home')}, T('thanks.home'))));
+            ...(mailBlock
+                ? [el('button', {id: 'open-mail', class: 'choice', disabled: locked, onclick: () => pendingMail && openMailClient(pendingMail.fields, pendingMail.subject)}, T('thanks.openMail'))]
+                : []),
+            el('button', {id: 'again', class: 'choice validate', disabled: locked, onclick: () => resetForm('form')}, T('thanks.again')),
+            el('button', {id: 'thanks-home', class: 'choice', disabled: locked, onclick: () => resetForm('home')}, T('thanks.home'))));
 }
 
 function renderSummary() {
@@ -270,8 +291,9 @@ function renderSummary() {
         el('h2', {}, T('summary.title')),
         summaryList(),
         ...(ready ? [] : [el('p', {class: 'hint'}, T('summary.empty'))]),
-        el('button', {id: 'validate', class: 'choice validate', disabled: !ready || sending, onclick: () => sendMail(place, tree)}, T('validate')),
-        el('p', {id: 'mailstatus', role: 'status'}, mailStatus ? T('status.' + mailStatus) : ''));
+        // The mail-client warning applies when the request goes through the visitor's mail client (FormSubmit off)
+        ...(!useFormSubmit() ? [el('div', {class: 'warning', role: 'note'}, el('p', {}, T('mailWarning')))] : []),
+        el('button', {id: 'validate', class: 'choice validate', disabled: !ready, onclick: () => sendMail(place, tree)}, T('validate')));
 }
 
 // Starts over with an empty form after a request has been sent
@@ -283,7 +305,10 @@ const applyDefaultPlace = () => {
 function resetForm(to) {
     Object.assign(sel, {place: null, budget: null, amount: null, tree: null, text: '', search: '', name: '', phone: '', line1: '', line2: '', pre: ['', ''], fStatus: 'all'});
     applyDefaultPlace();
-    mailStatus = '';
+    clearTimeout(mailTimer);
+    pendingMail = null;
+    mailOpened = false;
+    thanksState = 'sent';
     render();
     showView(to);
 }
@@ -291,18 +316,53 @@ function resetForm(to) {
 // The target address is stored base64-encoded in the config (hides it from simple scrapers; this is obfuscation, not secrecy)
 const emailTo = () => atob(cfg.email.toEncoded);
 
+// FormSubmit can be switched off with config.email.formsubmit = false (anything else, or missing, means on)
+const useFormSubmit = () => cfg.email.formsubmit !== false;
+
+// Opens the visitor's mail client with the message prefilled
+function openMailClient(fields, subject) {
+    const body = Object.entries(fields).map(([k, v]) => `${k} : ${v}`).join('\n');
+    // Recipient shown as "label <address>" when email.label is set (percent-encoded, as RFC 6068 requires)
+    const recipient = cfg.email.label ? encodeURIComponent(`${cfg.email.label} <${emailTo()}>`) : emailTo();
+    mailOpened = true;
+    renderThanks();
+    location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+// Mail-client mode (FormSubmit off, or FormSubmit failed): the thank-you page is shown first and the mail client opens
+// a few seconds later (config.email.mailClientDelaySeconds, 4 by default). The visitor can also open it with a button.
+let pendingMail = null; // {fields, subject} while the thank-you page is in mail-client mode
+let mailOpened = false; // true once the mail client has been opened: only then are the buttons of the thank-you page enabled
+let mailTimer = null;
+function showMailClientThanks(fields, subject) {
+    pendingMail = {fields, subject};
+    mailOpened = false;
+    thanksState = 'mail';
+    clearTimeout(mailTimer);
+    mailTimer = setTimeout(() => openMailClient(fields, subject), (cfg.email.mailClientDelaySeconds ?? 4) * 1000);
+    renderThanks();
+    showView('thanks');
+}
+
 // Sends through FormSubmit (no key; the address must be activated once via the mail FormSubmit sends).
-// If that fails, falls back to opening the visitor's mail client with the message prefilled.
-let mailStatus = ''; // key of config.texts.<lang>.status
-let sending = false;
+// If that fails, or if FormSubmit is switched off, the mail client is used instead (see showMailClientThanks).
+// State of the thank-you page: 'pending' (FormSubmit answer awaited, nothing is claimed yet), 'sent', or, with pendingMail set,
+// the mail-client mode. The visitor is sent to the thank-you page as soon as they validate.
+let thanksState = 'sent';
 
 async function sendMail(place, tree) {
     const fields = {[T('mail.place')]: placeLabel(place), [T('mail.amount')]: money(sel.amount), [T('mail.tree')]: tree.label, [T('mail.name')]: sel.name.trim(), [T('mail.phone')]: sel.phone.trim()};
     if (messageText()) fields[T('mail.message')] = messageText();
     const subject = T('mail.subject');
-    sending = true;
-    mailStatus = 'sending';
-    renderSummary();
+    if (!useFormSubmit()) {
+        showMailClientThanks(fields, subject);
+        return;
+    }
+    // Straight to the thank-you page; the answer of FormSubmit then confirms it, or switches the page to the mail client
+    thanksState = 'pending';
+    pendingMail = null;
+    renderThanks();
+    showView('thanks');
     try {
         const r = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(emailTo())}`, {
             method: 'POST',
@@ -312,19 +372,11 @@ async function sendMail(place, tree) {
         });
         const data = await r.json();
         if (!r.ok || String(data.success) !== 'true') throw new Error(data.message ?? r.status);
-        mailStatus = 'sent';
+        thanksState = 'sent';
         renderThanks();
-        showView('thanks');
     } catch (err) {
         console.error(err);
-        mailStatus = 'failed';
-        const body = Object.entries(fields).map(([k, v]) => `${k} : ${v}`).join('\n');
-        // Recipient shown as "label <address>" when email.label is set (percent-encoded, as RFC 6068 requires)
-        const recipient = cfg.email.label ? encodeURIComponent(`${cfg.email.label} <${emailTo()}>`) : emailTo();
-        location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    } finally {
-        sending = false;
-        renderSummary();
+        showMailClientThanks(fields, subject);
     }
 }
 

@@ -103,7 +103,9 @@
   },
   "email": {
     "toEncoded": "Y29udGFjdEBleGFtcGxlLmNvbQ==",
-    "label": "GiftGarden"
+    "formsubmit": true,
+    "label": "GiftGarden",
+    "mailClientDelaySeconds": 4
   },
   "texts": {
     "fr": {
@@ -121,7 +123,8 @@
         "budget": "2. Budget",
         "tree": "3. Quel arbre ?",
         "message": "4. Message",
-        "contact": "5. Vos coordonnées"
+        "contact": "5. Vos coordonnées",
+        "messageSubtitle": "(qui sera affiché sur l'arbre)"
       },
       "messageLabel": "Ligne 3 : un message pour la personne qui recevra l'arbre",
       "amountLabel": "Montant (€)",
@@ -152,11 +155,6 @@
         }
       },
       "validate": "Valider",
-      "status": {
-        "sending": "Envoi en cours…",
-        "sent": "✅ Votre demande a bien été envoyée.",
-        "failed": "L'envoi automatique a échoué : votre messagerie va s'ouvrir avec le message prêt à envoyer."
-      },
       "mail": {
         "subject": "GiftGarden : nouvelle commande",
         "place": "Lieu",
@@ -181,7 +179,9 @@
         "title": "Merci {name} !",
         "text": "Votre demande a bien été envoyée. Voici le récapitulatif de votre commande.",
         "again": "Faire une autre demande",
-        "home": "Retour à l'accueil"
+        "home": "Retour à l'accueil",
+        "textMail": "Voici le récapitulatif de votre demande.",
+        "openMail": "Ouvrir ma messagerie"
       },
       "messageTooLong": "Message trop long : {max} caractères maximum.",
       "messageLine1Label": "Ligne 1 : nom français",
@@ -198,10 +198,12 @@
         "unavailable": "Indisponible",
         "sponsoredBy": "par {name}"
       },
-      "premiumSubtitle": "Offre entreprise - compensez vos usages IA Claude en plantant des Magnolias Forever",
+      "premiumSubtitle": "🤖 Offre entreprise - compensez vos usages IA Claude en plantant des Magnolias Forever 🌍",
       "treeNotes": {
         "shared": "Cet arbre sera partagé avec plusieurs bienfaiteurs."
-      }
+      },
+      "mailWarning": "Votre messagerie va s'ouvrir pour envoyer un e-mail avec votre demande déjà rédigée. Elle ne nous parviendra que si vous cliquez sur « Envoyer » dans votre messagerie.",
+      "paymentNote": "Nous vous contacterons par téléphone pour les détails du règlement. Merci pour votre soutien."
     },
     "en": {
       "siteTitle": "GiftGarden",
@@ -218,7 +220,8 @@
         "budget": "2. Budget",
         "tree": "3. Which tree?",
         "message": "4. Message",
-        "contact": "5. Your details"
+        "contact": "5. Your details",
+        "messageSubtitle": "(which will be displayed on the tree)"
       },
       "messageLabel": "Line 3: a message for the person who will receive the tree",
       "amountLabel": "Amount (€)",
@@ -249,11 +252,6 @@
         }
       },
       "validate": "Confirm",
-      "status": {
-        "sending": "Sending…",
-        "sent": "✅ Your request has been sent.",
-        "failed": "Automatic sending failed: your mail app will open with the message ready to send."
-      },
       "mail": {
         "subject": "GiftGarden: new order",
         "place": "Place",
@@ -278,7 +276,9 @@
         "title": "Thank you {name}!",
         "text": "Your request has been sent. Here is the summary of your order.",
         "again": "Make another request",
-        "home": "Back to home"
+        "home": "Back to home",
+        "textMail": "Here is the summary of your request.",
+        "openMail": "Open my mail app"
       },
       "messageTooLong": "Message too long: {max} characters maximum.",
       "messageLine1Label": "Line 1: common name",
@@ -295,10 +295,12 @@
         "unavailable": "Unavailable",
         "sponsoredBy": "by {name}"
       },
-      "premiumSubtitle": "Business offer - offset your Claude AI usage by planting Magnolias Forever",
+      "premiumSubtitle": "🤖 Business offer - offset your Claude AI usage by planting Magnolias Forever 🌍",
       "treeNotes": {
         "shared": "This tree will be shared with several benefactors."
-      }
+      },
+      "mailWarning": "Your mail app will open to send an e-mail with your request already written. It will only reach us once you press “Send” in your mail app.",
+      "paymentNote": "We will contact you by phone about the payment details. Thank you for your support."
     }
   },
   "contact": {
