@@ -291,8 +291,6 @@ function renderSummary() {
         el('h2', {}, T('summary.title')),
         summaryList(),
         ...(ready ? [] : [el('p', {class: 'hint'}, T('summary.empty'))]),
-        // The mail-client warning applies when the request goes through the visitor's mail client (FormSubmit off)
-        ...(!useFormSubmit() ? [el('div', {class: 'warning', role: 'note'}, el('p', {}, T('mailWarning')))] : []),
         el('button', {id: 'validate', class: 'choice validate', disabled: !ready, onclick: () => sendMail(place, tree)}, T('validate')));
 }
 
@@ -316,8 +314,8 @@ function resetForm(to) {
 // The target address is stored base64-encoded in the config (hides it from simple scrapers; this is obfuscation, not secrecy)
 const emailTo = () => atob(cfg.email.toEncoded);
 
-// FormSubmit can be switched off with config.email.formsubmit = false (anything else, or missing, means on)
-const useFormSubmit = () => cfg.email.formsubmit !== false;
+// FormSubmit is off by default: it is used only when config.email.formsubmit is true (missing or false means off)
+const useFormSubmit = () => cfg.email.formsubmit === true;
 
 // Opens the visitor's mail client with the message prefilled
 function openMailClient(fields, subject) {

@@ -7,22 +7,24 @@ The visitor picks a place, a budget and a tree, personalises a three-line messag
 
 - Home page (title, text, picture, "GO!" button), a one-page form, then a thank-you page.
 - Choice of **place** (a city with its coat of arms), **budget** (fixed amounts or free price) and **tree**.
-- Tree list with search, availability chips (available, sponsored, unavailable) and a filter.
+- Tree list with search, availability chips (available, sponsored with the sponsor's name, unavailable) and a filter.
 - Availability rules per tree, per place, per budget and per amount.
-- **Premium** trees highlighted and grouped at the end of the list.
+- **Premium** trees highlighted and grouped at the end of the list, behind a separator.
 - **Message** in three lines: French name and Latin name (prefilled) and a free text with a character counter.
-- Request summary, field validation, sending by e-mail.
+- Request summary and field validation.
+- Thank-you page with the card of the chosen tree and the summary of the request.
+- Sending by e-mail, through a form service or through the visitor's mail client.
 - **French and English**, light or dark theme.
 
 ## Technical overview
 
 - Plain HTML, CSS and JavaScript: no framework, no dependency, no build step.
-- Everything that varies lives in `assets/config.json`: texts (per language), places, budgets, per-tree rules, theme, target e-mail address. The code contains no displayed text.
+- Everything that varies lives in `assets/config.json`: texts (per language), places, budgets, per-tree rules, theme, target e-mail address, sending options. The code contains no displayed text.
 - Trees and cities come from two data files in `assets/data/`: `trees.json` and `cities-FR.json`. Their `id` values are integers that must never be renumbered.
 - Only trees with `"available": true` are offered.
 - The UI is built with `createElement` and text nodes, never with `innerHTML`: visitor input is never interpreted as HTML.
 - A **Content Security Policy** (`<meta>` tag in `index.html`) restricts scripts and styles to the site itself, and network calls to `formsubmit.co`. Adding an external service means updating this policy.
-- Requests are sent through [FormSubmit](https://formsubmit.co) (no key needed). If sending fails, the page opens the visitor's mail client with a prefilled `mailto:`.
+- By default the request goes through the visitor's mail client (a prefilled `mailto:`). Sending through [FormSubmit](https://formsubmit.co) (no key needed) is optional and off by default; if it fails, the page falls back to the mail client.
 - City names and coats of arms, tree photos and flags are loaded from Wikimedia and flagcdn.
 
 ## Running the project
@@ -53,14 +55,15 @@ Then open <http://localhost:8000/>.
 
 ## Configuration
 
-To set up a new installation, copy `assets/config-example.json` to `assets/config.json` and adapt it.
+To set up a new installation, copy `assets/config-example.json` to `assets/config.json` and adapt it. The example file shows every setting and its expected format.
 
 ## Sending requests
 
-Before the first submission, set `email.toEncoded` to your address encoded in base64 (for example `printf '%s' 'you@example.com' | base64`). The encoding only hides the address from simple scrapers: anyone reading the page code can still decode it. 
-On the first submission, FormSubmit writes to that address to activate it: click the link you receive. 
-Until it is activated, sending fails and the mail client opens instead.
+The target address is stored base64-encoded in `email.toEncoded` (for example `printf '%s' 'you@example.com' | base64`). The encoding only hides the address from simple scrapers: anyone reading the page code can still decode it.
 
-To switch FormSubmit off (for example while it is not working), set `email.formsubmit` to `false`: the **Confirm** button then opens the visitor's mail client directly, with the request prefilled, and the page shows a matching warning. Set it back to `true` to send through FormSubmit again.
+When the visitor validates the form, they go straight to the thank-you page. Behind the scenes:
 
-Whenever the mail client is used (FormSubmit switched off, or FormSubmit failed), the thank-you page is shown first and the mail client opens a few seconds later (`email.mailClientDelaySeconds`, 4 by default). The page also has an "Open my mail app" button, in case the browser blocks the automatic opening.
+- **FormSubmit on** (`email.formsubmit` is `true`; it is off by default): the request is sent to FormSubmit. On the first submission, FormSubmit writes to the target address to activate it: click the link you receive. While the answer is awaited, the thank-you page shows a notice and all its buttons are disabled; if the sending is confirmed, the page says so and the notice goes away.
+- **FormSubmit off** (`email.formsubmit` is `false` or missing, the default), **or FormSubmit failed**: the thank-you page tells the visitor that their mail client is about to open with the request prefilled, and that the request only reaches you once they press "Send". The mail client opens a few seconds later (`email.mailClientDelaySeconds`, 4 by default). Until it has opened, all the buttons of the page are disabled; an "Open my mail app" button lets the visitor reopen it, in case the browser blocks the automatic opening.
+
+`email.label` (optional) is the display name of the recipient in the mail client, and the first row of the e-mail sent through FormSubmit.
