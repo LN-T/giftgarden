@@ -1,0 +1,3032 @@
+[
+ {
+  "id": 1,
+  "name": "Paris",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Armoiries%20de%20la%20ville%20de%20Paris%20%281949%29.svg",
+  "population": 2103778,
+  "latitude": 48.85658,
+  "longitude": 2.35183,
+  "department": "75",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 2,
+  "name": "Marseille",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Armoiries%20de%20Marseille.svg",
+  "population": 886040,
+  "latitude": 43.29635,
+  "longitude": 5.36989,
+  "department": "13",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 3,
+  "name": "Lyon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Coat%20of%20Arms%20of%20Lyon.svg",
+  "population": 519127,
+  "latitude": 45.7578,
+  "longitude": 4.8322,
+  "department": "69",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 4,
+  "name": "Toulouse",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Toulouse%20%28Haute-Garonne%29.svg",
+  "population": 514819,
+  "latitude": 43.60448,
+  "longitude": 1.44396,
+  "department": "31",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 5,
+  "name": "Nantes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Nantes.svg",
+  "population": 327734,
+  "latitude": 47.21806,
+  "longitude": -1.55278,
+  "department": "44",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 6,
+  "name": "Montpellier",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Montpellier.svg",
+  "population": 310240,
+  "latitude": 43.61194,
+  "longitude": 3.87722,
+  "department": "34",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 7,
+  "name": "Strasbourg",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Greater%20coat%20of%20arms%20of%20Strasbourg.svg",
+  "population": 293771,
+  "latitude": 48.57341,
+  "longitude": 7.75211,
+  "department": "67",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 8,
+  "name": "Bordeaux",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Bordeaux%20%28Gironde%29.svg",
+  "population": 267991,
+  "latitude": 44.83791,
+  "longitude": -0.57954,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 9,
+  "name": "Lille",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Lille%20%28Nord%29.svg",
+  "population": 238246,
+  "latitude": 50.63722,
+  "longitude": 3.06333,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 10,
+  "name": "Rennes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Rennes%20%28Ille-et-Vilaine%29.svg",
+  "population": 230890,
+  "latitude": 48.11472,
+  "longitude": -1.67944,
+  "department": "35",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 11,
+  "name": "Toulon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Toulon%20%28Var%29.svg",
+  "population": 179116,
+  "latitude": 43.1222,
+  "longitude": 5.93,
+  "department": "83",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 12,
+  "name": "Reims",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Reims%2051.svg",
+  "population": 177674,
+  "latitude": 49.26278,
+  "longitude": 4.03472,
+  "department": "51",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 13,
+  "name": "Saint-Étienne",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Saint-%C3%89tienne.svg",
+  "population": 173136,
+  "latitude": 45.43472,
+  "longitude": 4.39028,
+  "department": "42",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 14,
+  "name": "Le Havre",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Le%20Havre%20%28Seine-Maritime%29.svg",
+  "population": 166687,
+  "latitude": 49.49,
+  "longitude": 0.1,
+  "department": "76",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 15,
+  "name": "Villeurbanne",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Villeurbanne%20%28Rh%C3%B4ne%29.svg",
+  "population": 163684,
+  "latitude": 45.76667,
+  "longitude": 4.88028,
+  "department": "69",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 16,
+  "name": "Dijon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Dijon%20%28C%C3%B4te-d%27Or%29.svg",
+  "population": 161830,
+  "latitude": 47.32167,
+  "longitude": 5.04139,
+  "department": "21",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 17,
+  "name": "Angers",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20d%27Angers.svg",
+  "population": 159022,
+  "latitude": 47.47361,
+  "longitude": -0.55416,
+  "department": "49",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 18,
+  "name": "Grenoble",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Grenoble%20%28Isere%29.svg",
+  "population": 156140,
+  "latitude": 45.18778,
+  "longitude": 5.72694,
+  "department": "38",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 19,
+  "name": "Saint-Denis",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20St-Denis%20R%C3%A9union%20DOM.svg",
+  "population": 155634,
+  "latitude": -20.87889,
+  "longitude": 55.44806,
+  "department": "974",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 20,
+  "name": "Nîmes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20N%C3%AEmes%20%28Gard%29.svg",
+  "population": 151839,
+  "latitude": 43.83778,
+  "longitude": 4.36083,
+  "department": "30",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 21,
+  "name": "Aix-en-Provence",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Escut%20de%20Ais%20de%20Proven%C3%A7a.svg",
+  "population": 149695,
+  "latitude": 43.53113,
+  "longitude": 5.45402,
+  "department": "13",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 22,
+  "name": "Clermont-Ferrand",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20ClermontFerrand%20%28PuyDome%29.svg",
+  "population": 146351,
+  "latitude": 45.77588,
+  "longitude": 3.08229,
+  "department": "63",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 23,
+  "name": "Le Mans",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Le%20Mans%20%28Sarthe%29.svg",
+  "population": 146249,
+  "latitude": 48.00417,
+  "longitude": 0.19694,
+  "department": "72",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 24,
+  "name": "Brest",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Brest%20%28Finistere%29.svg",
+  "population": 142346,
+  "latitude": 48.39083,
+  "longitude": -4.48556,
+  "department": "29",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 25,
+  "name": "Tours",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20tours%2037.svg",
+  "population": 139259,
+  "latitude": 47.39361,
+  "longitude": 0.68917,
+  "department": "37",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 26,
+  "name": "Amiens",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20fr%20ville%20Amiens.svg",
+  "population": 136449,
+  "latitude": 49.89429,
+  "longitude": 2.29574,
+  "department": "80",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 27,
+  "name": "Annecy",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20d%27Annecy.svg",
+  "population": 132117,
+  "latitude": 45.916,
+  "longitude": 6.133,
+  "department": "74",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 28,
+  "name": "Limoges",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Heraldique%20blason%20ville%20fr%20Limoges.svg",
+  "population": 129937,
+  "latitude": 45.85,
+  "longitude": 1.25,
+  "department": "87",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 29,
+  "name": "Metz",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Grandes%20Armes%20de%20Metz.svg",
+  "population": 122572,
+  "latitude": 49.1203,
+  "longitude": 6.1778,
+  "department": "57",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 30,
+  "name": "Perpignan",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Arms%20of%20Perpignan.svg",
+  "population": 121616,
+  "latitude": 42.69861,
+  "longitude": 2.89556,
+  "department": "66",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 31,
+  "name": "Boulogne-Billancourt",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Commune%20Boulogne-Billancourt%20FR92.svg",
+  "population": 119019,
+  "latitude": 48.8352,
+  "longitude": 2.24095,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 32,
+  "name": "Besançon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Arms%20of%20Imperial%20City%20of%20Besan%C3%A7on.svg",
+  "population": 118489,
+  "latitude": 47.24306,
+  "longitude": 6.02194,
+  "department": "25",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 33,
+  "name": "Orléans",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Orl%C3%A9ans.svg",
+  "population": 116357,
+  "latitude": 47.9025,
+  "longitude": 1.909,
+  "department": "45",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 34,
+  "name": "Caen",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Caen%20%28Calvados%292.svg",
+  "population": 109400,
+  "latitude": 49.18222,
+  "longitude": -0.37056,
+  "department": "14",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 35,
+  "name": "Argenteuil",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Argenteuil%20%28Val-d%27Oise%29.svg",
+  "population": 106130,
+  "latitude": 48.94778,
+  "longitude": 2.24889,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 36,
+  "name": "Mulhouse",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Mulhouse.svg",
+  "population": 104978,
+  "latitude": 47.74948,
+  "longitude": 7.33994,
+  "department": "68",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 37,
+  "name": "Nancy",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Nancy%2054.svg",
+  "population": 103671,
+  "latitude": 48.6936,
+  "longitude": 6.1846,
+  "department": "54",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 38,
+  "name": "Tourcoing",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Tourcoing%20%28Nord%29.svg",
+  "population": 98772,
+  "latitude": 50.7249,
+  "longitude": 3.16199,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 39,
+  "name": "Nanterre",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Nanterre%20%28Hauts-de-Seine%29.svg",
+  "population": 97783,
+  "latitude": 48.89192,
+  "longitude": 2.2073,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 40,
+  "name": "Vitry-sur-Seine",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Vitry-sur-Seine%20%28Val%20de%20Marne%29.svg",
+  "population": 93963,
+  "latitude": 48.7875,
+  "longitude": 2.39278,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 41,
+  "name": "Créteil",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Cr%C3%A9teil%20%28Val-de-Marne%29.svg",
+  "population": 93397,
+  "latitude": 48.79111,
+  "longitude": 2.46278,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 42,
+  "name": "Avignon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Avignon%20%28Vaucluse%29.svg",
+  "population": 92188,
+  "latitude": 43.95,
+  "longitude": 4.817,
+  "department": "84",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 43,
+  "name": "Colombes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Colombes%20%28Hauts-de-Seine%29.svg",
+  "population": 91053,
+  "latitude": 48.92361,
+  "longitude": 2.25222,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 44,
+  "name": "Poitiers",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Poitiers%20%28Vienne%29.svg",
+  "population": 89916,
+  "latitude": 46.58194,
+  "longitude": 0.33611,
+  "department": "86",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 45,
+  "name": "Aubervilliers",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Aubervilliers%2093.svg",
+  "population": 88365,
+  "latitude": 48.9131,
+  "longitude": 2.3832,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 46,
+  "name": "Dunkerque",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Greater%20Coat%20of%20Arms%20of%20Dunkerque.svg",
+  "population": 86263,
+  "latitude": 51.03833,
+  "longitude": 2.3775,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 47,
+  "name": "Versailles",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Versailles%20%28Yvelines%29.svg",
+  "population": 84095,
+  "latitude": 48.8053,
+  "longitude": 2.135,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 48,
+  "name": "Courbevoie",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Courbevoie%2092.svg",
+  "population": 82902,
+  "latitude": 48.89778,
+  "longitude": 2.25306,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 49,
+  "name": "Rueil-Malmaison",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Rueil-Malmaison%20%28Hauts-de-Seine%29.svg",
+  "population": 82874,
+  "latitude": 48.87783,
+  "longitude": 2.18132,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 50,
+  "name": "Le Tampon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ville%20du%20Tampon%20%28R%C3%A9union%29.png",
+  "population": 82579,
+  "latitude": -21.27806,
+  "longitude": 55.51528,
+  "department": "974",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 51,
+  "name": "Béziers",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20B%C3%A9ziers.svg",
+  "population": 81545,
+  "latitude": 43.34761,
+  "longitude": 3.21899,
+  "department": "34",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 52,
+  "name": "La Rochelle",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20La%20Rochelle.png",
+  "population": 79851,
+  "latitude": 46.15906,
+  "longitude": -1.15172,
+  "department": "17",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 53,
+  "name": "Mérignac",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20M%C3%A9rignac%20%28Gironde%29.svg",
+  "population": 78090,
+  "latitude": 44.84306,
+  "longitude": -0.64472,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 54,
+  "name": "Antibes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Antibes.svg",
+  "population": 77637,
+  "latitude": 43.58083,
+  "longitude": 7.12389,
+  "department": "06",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 55,
+  "name": "Ajaccio",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Ajaccio.svg",
+  "population": 76320,
+  "latitude": 41.92667,
+  "longitude": 8.73694,
+  "department": "2A",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 56,
+  "name": "Fort-de-France",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Fort-de-France%20%28Martinique%29.svg",
+  "population": 75506,
+  "latitude": 14.6,
+  "longitude": -61.06667,
+  "department": "972",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 57,
+  "name": "Saint-Nazaire",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Saint-Nazaire%20%28Loire-Atlantique%29%20v2.svg",
+  "population": 74568,
+  "latitude": 47.28056,
+  "longitude": -2.20861,
+  "department": "44",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 58,
+  "name": "Cannes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/FRA%20Cannes%20COA.svg",
+  "population": 74350,
+  "latitude": 43.55135,
+  "longitude": 7.01275,
+  "department": "06",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 59,
+  "name": "Noisy-le-Grand",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Noisy-le-Grand%20%28Seine-Saint-Denis%29.svg",
+  "population": 72978,
+  "latitude": 48.84775,
+  "longitude": 2.55279,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 60,
+  "name": "Drancy",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Drancy%2093.svg",
+  "population": 72390,
+  "latitude": 48.9233,
+  "longitude": 2.445,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 61,
+  "name": "Cergy",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Cergy%20%28Val-d%27Oise%29.svg",
+  "population": 70906,
+  "latitude": 49.03611,
+  "longitude": 2.06306,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 62,
+  "name": "Calais",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Calais%20%28Pas-de-Calais%29.svg",
+  "population": 67571,
+  "latitude": 50.94806,
+  "longitude": 1.85639,
+  "department": "62",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 63,
+  "name": "Pessac",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Pessac%20%28Gironde%29.svg",
+  "population": 67339,
+  "latitude": 44.80667,
+  "longitude": -0.63111,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 64,
+  "name": "Vénissieux",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20V%C3%A9nissieux.svg",
+  "population": 65502,
+  "latitude": 45.69778,
+  "longitude": 4.88667,
+  "department": "69",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 65,
+  "name": "Ivry-sur-Seine",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Ivry-sur-Seine%2094.svg",
+  "population": 65064,
+  "latitude": 48.8078,
+  "longitude": 2.3747,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 66,
+  "name": "Valence",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Valence%20%28Drome%29.svg",
+  "population": 64458,
+  "latitude": 44.9325,
+  "longitude": 4.89083,
+  "department": "26",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 67,
+  "name": "Clichy",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Clichy%2092.svg",
+  "population": 64410,
+  "latitude": 48.90444,
+  "longitude": 2.30639,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 68,
+  "name": "Quimper",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Quimper%20%28Finist%C3%A8re%29.svg",
+  "population": 64385,
+  "latitude": 47.99667,
+  "longitude": -4.09639,
+  "department": "29",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 69,
+  "name": "Antony",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Antony%20%28Hauts-de-Seine%29.svg",
+  "population": 64263,
+  "latitude": 48.75389,
+  "longitude": 2.2975,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 70,
+  "name": "La Seyne-sur-Mer",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20La-Seyne-sur-Mer.svg",
+  "population": 63732,
+  "latitude": 43.1,
+  "longitude": 5.88333,
+  "department": "83",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 71,
+  "name": "Montauban",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Montauban%20%28Tarn-et-Garonne%29.svg",
+  "population": 62945,
+  "latitude": 44.01806,
+  "longitude": 1.35583,
+  "department": "82",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 72,
+  "name": "Villeneuve-d'Ascq",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Villeneuve-d%27Ascq%20%28Nord%29.svg",
+  "population": 62868,
+  "latitude": 50.61949,
+  "longitude": 3.13177,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 73,
+  "name": "Cayenne",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Coat%20of%20arms%20of%20French%20Guyana.svg",
+  "population": 62675,
+  "latitude": 4.93861,
+  "longitude": -52.335,
+  "department": "973",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 74,
+  "name": "Le Blanc-Mesnil",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Blanc-M%C3%A9nil%2093.svg",
+  "population": 62376,
+  "latitude": 48.9388,
+  "longitude": 2.4636,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 75,
+  "name": "Troyes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Troyes.svg",
+  "population": 62088,
+  "latitude": 48.29742,
+  "longitude": 4.07426,
+  "department": "10",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 76,
+  "name": "Pantin",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Pantin%20%28Seine-Saint-Denis%29.svg",
+  "population": 61929,
+  "latitude": 48.89658,
+  "longitude": 2.40168,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 77,
+  "name": "Niort",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Niort%20%28Deux-S%C3%A8vres%29.svg",
+  "population": 59854,
+  "latitude": 46.32583,
+  "longitude": -0.46056,
+  "department": "79",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 78,
+  "name": "Neuilly-sur-Seine",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Neuilly-sur-Seine%20%28Hauts-de-Seine%29.svg",
+  "population": 59538,
+  "latitude": 48.88806,
+  "longitude": 2.26861,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 79,
+  "name": "Clamart",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Clamart%20%28Hauts-de-Seine%29.svg",
+  "population": 58576,
+  "latitude": 48.80139,
+  "longitude": 2.26278,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 80,
+  "name": "Lorient",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Lorient%20%28Morbihan%29.svg",
+  "population": 58329,
+  "latitude": 47.75,
+  "longitude": -3.36,
+  "department": "56",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 81,
+  "name": "Narbonne",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Narbonne.svg",
+  "population": 57587,
+  "latitude": 43.1836,
+  "longitude": 3.0042,
+  "department": "11",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 82,
+  "name": "Bobigny",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Bobigny%2093.svg",
+  "population": 56927,
+  "latitude": 48.9106,
+  "longitude": 2.4398,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 83,
+  "name": "Meaux",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Meaux%20%28Seine-et-Marne%29.svg",
+  "population": 56905,
+  "latitude": 48.96028,
+  "longitude": 2.88833,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 84,
+  "name": "Maisons-Alfort",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Maisons-Alfort%2094.svg",
+  "population": 56799,
+  "latitude": 48.80583,
+  "longitude": 2.43778,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 85,
+  "name": "Vannes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/COA%20fr%20Vannes%2056.svg",
+  "population": 55790,
+  "latitude": 47.6559,
+  "longitude": -2.7603,
+  "department": "56",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 86,
+  "name": "Beauvais",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Beauvais%20%28Oise%29.svg",
+  "population": 55550,
+  "latitude": 49.43028,
+  "longitude": 2.0952,
+  "department": "60",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 87,
+  "name": "Corbeil-Essonnes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Corbeil-Essonnes2%20%28Essonne%29.svg",
+  "population": 54471,
+  "latitude": 48.61388,
+  "longitude": 2.48203,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 88,
+  "name": "Saint-Laurent-du-Maroni",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Saint-Laurent-du-Maroni.svg",
+  "population": 54429,
+  "latitude": 5.50389,
+  "longitude": -54.02889,
+  "department": "973",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 89,
+  "name": "Cholet",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Cholet%20%28Maine-et-Loire%29.svg",
+  "population": 54404,
+  "latitude": 47.06,
+  "longitude": -0.87833,
+  "department": "49",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 90,
+  "name": "Fontenay-sous-Bois",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Fontenay-sous-Bois%2094.svg",
+  "population": 53757,
+  "latitude": 48.85167,
+  "longitude": 2.47722,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 91,
+  "name": "Saint-Ouen-sur-Seine",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Saint-Ouen-sur-Seine.svg",
+  "population": 53615,
+  "latitude": 48.91215,
+  "longitude": 2.33425,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 92,
+  "name": "Cagnes-sur-Mer",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20Cagnes-sur-Mer%20%28Alp-Mar%29.svg",
+  "population": 53354,
+  "latitude": 43.66444,
+  "longitude": 7.14889,
+  "department": "06",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 93,
+  "name": "Vaulx-en-Velin",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Vaulx-en-Velin%20%28Rh%C3%B4ne%29.svg",
+  "population": 53069,
+  "latitude": 45.7768,
+  "longitude": 4.9185,
+  "department": "69",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 94,
+  "name": "Épinay-sur-Seine",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Epinay-sur-Seine%2093.svg",
+  "population": 52833,
+  "latitude": 48.95528,
+  "longitude": 2.30917,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 95,
+  "name": "Saint-Quentin",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20St-Quentin%2002.svg",
+  "population": 52813,
+  "latitude": 49.84861,
+  "longitude": 3.28639,
+  "department": "02",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 96,
+  "name": "Sartrouville",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Sartrouville%20%28Yvelines%29.svg",
+  "population": 52763,
+  "latitude": 48.9372,
+  "longitude": 2.1644,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 97,
+  "name": "Arles",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20d%27Arles.svg",
+  "population": 51811,
+  "latitude": 43.67665,
+  "longitude": 4.6278,
+  "department": "13",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 98,
+  "name": "Grasse",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Grasse%20%28Alpes%20Maritimes%29.svg",
+  "population": 50970,
+  "latitude": 43.6667,
+  "longitude": 6.9167,
+  "department": "06",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 99,
+  "name": "Castres",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason_ville_fr_Castres_%28Tarn%29.svg",
+  "population": 42505,
+  "latitude": 43.6132,
+  "longitude": 2.2448,
+  "department": "81",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 100,
+  "name": "Franconville",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason_ville_fr_Franconville_(Val-d'Oise).svg",
+  "population": 38024,
+  "latitude": 48.98806,
+  "longitude": 2.23056,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 101,
+  "name": "Pontoise",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason_de_Pontoise_%282%29.svg",
+  "population": 31970,
+  "latitude": 49.05083,
+  "longitude": 2.10083,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 102,
+  "name": "Vandœuvre-lès-Nancy",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Vandoeuvre-les-Nancy.svg",
+  "population": 29942,
+  "latitude": 48.65667,
+  "longitude": 6.16833,
+  "department": "54",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 103,
+  "name": "Agde",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Agde%20%28H%C3%A9rault%29.svg",
+  "population": 29939,
+  "latitude": 43.31083,
+  "longitude": 3.47583,
+  "department": "34",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 104,
+  "name": "Décines-Charpieu",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20D%C3%A9cines-Charpieu%20%28Rh%C3%B4ne%29.svg",
+  "population": 29877,
+  "latitude": 45.76851,
+  "longitude": 4.95696,
+  "department": "69",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 105,
+  "name": "Saint-Cloud",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Saint-Cloud%20%28Hauts-de-Seine%29.svg",
+  "population": 29855,
+  "latitude": 48.84384,
+  "longitude": 2.21908,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 106,
+  "name": "Villemomble",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Villemomble%2093.svg",
+  "population": 29795,
+  "latitude": 48.8903,
+  "longitude": 2.5111,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 107,
+  "name": "Guyancourt",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Guyancourt%20%28Yvelines%29.svg",
+  "population": 29778,
+  "latitude": 48.77139,
+  "longitude": 2.07389,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 108,
+  "name": "Orange",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Orange%20%28Vaucluse%29.svg",
+  "population": 29706,
+  "latitude": 44.1375,
+  "longitude": 4.80889,
+  "department": "84",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 109,
+  "name": "Fresnes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Fresnes%2094.svg",
+  "population": 29528,
+  "latitude": 48.75889,
+  "longitude": 2.32361,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 110,
+  "name": "Saint-Étienne-du-Rouvray",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Saint-%C3%A9tienne-du-Rouvray.svg",
+  "population": 29518,
+  "latitude": 49.37861,
+  "longitude": 1.105,
+  "department": "76",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 111,
+  "name": "Ermont",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Ermont%2095.svg",
+  "population": 29489,
+  "latitude": 48.9833,
+  "longitude": 2.2667,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 112,
+  "name": "Clichy-sous-Bois",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Clichy-sous-Bois%2093.svg",
+  "population": 29354,
+  "latitude": 48.9167,
+  "longitude": 2.55,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 113,
+  "name": "Vallauris",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Vallauris%2006.svg",
+  "population": 29259,
+  "latitude": 43.58056,
+  "longitude": 7.05389,
+  "department": "06",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 114,
+  "name": "Périgueux",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20P%C3%A9rigueux%20%28Dordogne%29.svg",
+  "population": 29055,
+  "latitude": 45.18399,
+  "longitude": 0.71578,
+  "department": "24",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 115,
+  "name": "Sotteville-lès-Rouen",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Sotteville-l%C3%A8s-Rouen.svg",
+  "population": 29003,
+  "latitude": 49.40917,
+  "longitude": 1.09,
+  "department": "76",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 116,
+  "name": "Bois-Colombes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Bois-Colombes%20%28Hauts-de-Seine%29.svg",
+  "population": 28909,
+  "latitude": 48.9175,
+  "longitude": 2.26833,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 117,
+  "name": "Le Plessis-Robinson",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Plessis-Robinson%2092.svg",
+  "population": 28848,
+  "latitude": 48.78121,
+  "longitude": 2.2605,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 118,
+  "name": "Charenton-le-Pont",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Charenton-le-Pont%20FR94.svg",
+  "population": 28830,
+  "latitude": 48.82139,
+  "longitude": 2.41194,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 119,
+  "name": "Maubeuge",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Maubeuge.svg",
+  "population": 28767,
+  "latitude": 50.2775,
+  "longitude": 3.9734,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 120,
+  "name": "Montfermeil",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Montfermeil.svg",
+  "population": 28703,
+  "latitude": 48.9,
+  "longitude": 2.5667,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 121,
+  "name": "Vanves",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Vanves.svg",
+  "population": 28622,
+  "latitude": 48.82083,
+  "longitude": 2.28972,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 122,
+  "name": "Saint-Sébastien-sur-Loire",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Saint-S%C3%A9bastien-sur-Loire%20%28Loire-Atlantique%29.svg",
+  "population": 28596,
+  "latitude": 47.20806,
+  "longitude": -1.50139,
+  "department": "44",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 123,
+  "name": "Orvault",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Orvault%20%28Loire-Atlantique%29.svg",
+  "population": 28534,
+  "latitude": 47.27167,
+  "longitude": -1.6225,
+  "department": "44",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 124,
+  "name": "Dieppe",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Dieppe.svg",
+  "population": 28496,
+  "latitude": 49.925,
+  "longitude": 1.075,
+  "department": "76",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 125,
+  "name": "Soissons",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Soissons%20%28Aisne%29.svg",
+  "population": 28046,
+  "latitude": 49.38167,
+  "longitude": 3.32361,
+  "department": "02",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 126,
+  "name": "Lomme",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ecu%20band%C3%A9%20or%20gueules.svg",
+  "population": 28006,
+  "latitude": 50.63583,
+  "longitude": 3.01417,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 127,
+  "name": "Yerres",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/BlasonYerres.svg",
+  "population": 27906,
+  "latitude": 48.71709,
+  "longitude": 2.48809,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 128,
+  "name": "Illkirch-Graffenstaden",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Illkirch-Graffenstaden%2067.svg",
+  "population": 27872,
+  "latitude": 48.52556,
+  "longitude": 7.71528,
+  "department": "67",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 129,
+  "name": "Sucy-en-Brie",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20sucy.svg",
+  "population": 27764,
+  "latitude": 48.76972,
+  "longitude": 2.52278,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 130,
+  "name": "Le Gosier",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Le%20Gosier%20%28Guadeloupe%29.svg",
+  "population": 27757,
+  "latitude": 16.20556,
+  "longitude": -61.49194,
+  "department": "971",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 131,
+  "name": "Rambouillet",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Rambouillet%20%28Yvelines%29.svg",
+  "population": 27724,
+  "latitude": 48.64361,
+  "longitude": 1.83,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 132,
+  "name": "Remire-Montjoly",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Remire-Montjoly%20%28Guyane%29.jpg",
+  "population": 27723,
+  "latitude": 4.905,
+  "longitude": -52.27639,
+  "department": "973",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 133,
+  "name": "Gonesse",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20Gonesse.svg",
+  "population": 27707,
+  "latitude": 48.9833,
+  "longitude": 2.45,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 134,
+  "name": "Le Chesnay",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Le%20Chesnay%20%28Yvelines%29.svg",
+  "population": 27683,
+  "latitude": 48.82111,
+  "longitude": 2.13111,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 135,
+  "name": "Blagnac",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Blagnac%20%28Haute-Garonne%29.svg",
+  "population": 27604,
+  "latitude": 43.63639,
+  "longitude": 1.39056,
+  "department": "31",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 136,
+  "name": "Taverny",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Taverny%20%28Val-d%27Oise%29.svg",
+  "population": 27593,
+  "latitude": 49.0333,
+  "longitude": 2.2167,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 137,
+  "name": "La Teste-de-Buch",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20La%20Teste-de-Buch%20%28Gironde%29.svg",
+  "population": 27566,
+  "latitude": 44.63099,
+  "longitude": -1.14823,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 138,
+  "name": "Bussy-Saint-Georges",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Bussy%20saint%20georges%20%28Seine-et-Marne%29.svg",
+  "population": 27498,
+  "latitude": 48.8422,
+  "longitude": 2.6983,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 139,
+  "name": "Champs-sur-Marne",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20Fr%20Champs%20sur%20Marne%20%2877%29.svg",
+  "population": 27451,
+  "latitude": 48.85288,
+  "longitude": 2.60273,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 140,
+  "name": "Limeil-Brévannes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Limeil-Br%C3%A9vannes%20%28Val-de-Marne%29.svg",
+  "population": 27406,
+  "latitude": 48.74639,
+  "longitude": 2.48833,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 141,
+  "name": "Cormeilles-en-Parisis",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Cormeilles-en-Parisis%2095.svg",
+  "population": 27292,
+  "latitude": 48.9833,
+  "longitude": 2.2,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 142,
+  "name": "Bergerac",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Bergerac2%20%28Dordogne%29.svg",
+  "population": 27110,
+  "latitude": 44.85361,
+  "longitude": 0.4875,
+  "department": "24",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 143,
+  "name": "Sens",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20sens.svg",
+  "population": 27106,
+  "latitude": 48.19722,
+  "longitude": 3.28333,
+  "department": "89",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 144,
+  "name": "Lambersart",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Lambersart%20%2859%29%20Nord-France.svg",
+  "population": 27090,
+  "latitude": 50.65,
+  "longitude": 3.025,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 145,
+  "name": "Armentières",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Armenti%C3%A8res%20%28Nord%29.svg",
+  "population": 26998,
+  "latitude": 50.68806,
+  "longitude": 2.88111,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 146,
+  "name": "Gradignan",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Gradignan%20%28Gironde%29.svg",
+  "population": 26952,
+  "latitude": 44.7725,
+  "longitude": -0.61556,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 147,
+  "name": "Sannois",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Sannois%20%28Val-d%27Oise%29.svg",
+  "population": 26924,
+  "latitude": 48.9667,
+  "longitude": 2.25,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 148,
+  "name": "Étampes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20%C3%89tampes%20%28Essonne%29.svg",
+  "population": 26857,
+  "latitude": 48.43426,
+  "longitude": 2.16149,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 149,
+  "name": "Grigny",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Grigny%20%28Essonne%29.svg",
+  "population": 26842,
+  "latitude": 48.65667,
+  "longitude": 2.38806,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 150,
+  "name": "Cenon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Cenon%20%2833%29.svg",
+  "population": 26834,
+  "latitude": 44.85778,
+  "longitude": -0.53167,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 151,
+  "name": "Brétigny-sur-Orge",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Br%C3%A9tigny-sur-Orge%20%28Essonne%29.svg",
+  "population": 26658,
+  "latitude": 48.61143,
+  "longitude": 2.30595,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 152,
+  "name": "Lunel",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Lunel%20%28H%C3%A9rault%29.svg",
+  "population": 26623,
+  "latitude": 43.67778,
+  "longitude": 4.13611,
+  "department": "34",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 153,
+  "name": "La Garde",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20La%20Garde.svg",
+  "population": 26476,
+  "latitude": 43.12472,
+  "longitude": 6.01056,
+  "department": "83",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 154,
+  "name": "Élancourt",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Elancourt%20%28Yvelines%29.svg",
+  "population": 26365,
+  "latitude": 48.78472,
+  "longitude": 1.95889,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 155,
+  "name": "Saumur",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Saumur%20%28Maine-et-Loire%29%202.svg",
+  "population": 26241,
+  "latitude": 47.26,
+  "longitude": -0.07694,
+  "department": "49",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 156,
+  "name": "Vertou",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Vertou%20%28Loire-Atlantique%29.svg",
+  "population": 26227,
+  "latitude": 47.16889,
+  "longitude": -1.46972,
+  "department": "44",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 157,
+  "name": "Aurillac",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Aurillac%20%28Cantal%29.svg",
+  "population": 26214,
+  "latitude": 44.92611,
+  "longitude": 2.44056,
+  "department": "15",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 158,
+  "name": "Eaubonne",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Eaubonne%20%28Val-d%27Oise%29.svg",
+  "population": 26211,
+  "latitude": 49,
+  "longitude": 2.2833,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 159,
+  "name": "Biarritz",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Biarritz%2064.svg",
+  "population": 26206,
+  "latitude": 43.4817,
+  "longitude": -1.55611,
+  "department": "64",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 160,
+  "name": "Miramas",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Miramas%20%2813%29.svg",
+  "population": 26203,
+  "latitude": 43.58222,
+  "longitude": 5.00194,
+  "department": "13",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 161,
+  "name": "Muret",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Muret%20%28Haute-Garonne%29.svg",
+  "population": 26079,
+  "latitude": 43.46028,
+  "longitude": 1.32583,
+  "department": "31",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 162,
+  "name": "Castelnau-le-Lez",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Castelnau-le-Lez%20%28H%C3%A9rault%29.svg",
+  "population": 26058,
+  "latitude": 43.63694,
+  "longitude": 3.90194,
+  "department": "34",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 163,
+  "name": "Villeneuve-la-Garenne",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Villeneuve-la-Garenne%20%28Hauts-de-Seine%29.svg",
+  "population": 26021,
+  "latitude": 48.93722,
+  "longitude": 2.32778,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 164,
+  "name": "Les Ulis",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Les%20Ulis%20%28Essonne%29.svg",
+  "population": 25886,
+  "latitude": 48.68216,
+  "longitude": 2.16982,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 165,
+  "name": "Les Pavillons-sous-Bois",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Les%20pavillons%20sous%20bois.svg",
+  "population": 25804,
+  "latitude": 48.9058,
+  "longitude": 2.5106,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 166,
+  "name": "Le Grand-Quevilly",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Le%20Grand-Quevilly%20%28Seine-Maritime%29.svg",
+  "population": 25789,
+  "latitude": 49.40722,
+  "longitude": 1.05306,
+  "department": "76",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 167,
+  "name": "Lormont",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Lormont%20%28Gironde%29.svg",
+  "population": 25769,
+  "latitude": 44.87917,
+  "longitude": -0.52167,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 168,
+  "name": "Hénin-Beaumont",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20H%C3%A9nin-Beaumont.svg",
+  "population": 25688,
+  "latitude": 50.42167,
+  "longitude": 2.95083,
+  "department": "62",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 169,
+  "name": "Brunoy",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Brunoy.svg",
+  "population": 25643,
+  "latitude": 48.69791,
+  "longitude": 2.50443,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 170,
+  "name": "Cavaillon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Cavaillon%20%28Vaucluse%29.svg",
+  "population": 25636,
+  "latitude": 43.8375,
+  "longitude": 5.03806,
+  "department": "84",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 171,
+  "name": "Saint-Ouen-l'Aumône",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20Saint-Ouen-l%27Aum%C3%B4ne.svg",
+  "population": 25578,
+  "latitude": 49.05,
+  "longitude": 2.1167,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 172,
+  "name": "Alençon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Alen%C3%A7on.svg",
+  "population": 25490,
+  "latitude": 48.42972,
+  "longitude": 0.09194,
+  "department": "61",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 173,
+  "name": "Saintes",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Saintes%20%28Charente-Maritime%29.svg",
+  "population": 25363,
+  "latitude": 45.7464,
+  "longitude": -0.6333,
+  "department": "17",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 174,
+  "name": "Vernon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Vernon%20%28Eure%29.svg",
+  "population": 25290,
+  "latitude": 49.09167,
+  "longitude": 1.485,
+  "department": "27",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 175,
+  "name": "Béthune",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Maison%20de%20B%C3%A9thune.svg",
+  "population": 25224,
+  "latitude": 50.5292,
+  "longitude": 2.6402,
+  "department": "62",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 176,
+  "name": "Vichy",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20fr%20Vichy.svg",
+  "population": 25115,
+  "latitude": 46.12439,
+  "longitude": 3.42838,
+  "department": "03",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 177,
+  "name": "Le Bouscat",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Le%20Bouscat%20%28Gironde%29.svg",
+  "population": 25081,
+  "latitude": 44.86511,
+  "longitude": -0.59959,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 178,
+  "name": "Vierzon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Vierzon.svg",
+  "population": 25068,
+  "latitude": 47.2225,
+  "longitude": 2.06944,
+  "department": "18",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 179,
+  "name": "Libourne",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Libourne%20%28Gironde%29.svg",
+  "population": 25036,
+  "latitude": 44.91611,
+  "longitude": -0.24278,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 180,
+  "name": "Eysines",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Eysines%20%28Gironde%29.svg",
+  "population": 24825,
+  "latitude": 44.88528,
+  "longitude": -0.65,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 181,
+  "name": "Kourou",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Kourou%20%28Guyane%29.svg",
+  "population": 24824,
+  "latitude": 5.15833,
+  "longitude": -52.64278,
+  "department": "973",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 182,
+  "name": "Montbéliard",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Montb%C3%A9liard.svg",
+  "population": 24672,
+  "latitude": 47.51027,
+  "longitude": 6.79888,
+  "department": "25",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 183,
+  "name": "Charleville",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Charleville%20%28Ardennes%29.svg",
+  "population": 24668,
+  "latitude": 49.77248,
+  "longitude": 4.72002,
+  "department": "08",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 184,
+  "name": "Orly",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Orly%2094.svg",
+  "population": 24658,
+  "latitude": 48.74389,
+  "longitude": 2.39278,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 185,
+  "name": "Laon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Laon%20%28Aisne%29.svg",
+  "population": 24220,
+  "latitude": 49.56389,
+  "longitude": 3.62444,
+  "department": "02",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 186,
+  "name": "Frontignan",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Frontignan%20%28H%C3%A9rault%29.svg",
+  "population": 24136,
+  "latitude": 43.44833,
+  "longitude": 3.75611,
+  "department": "34",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 187,
+  "name": "Le Kremlin-Bicêtre",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20kremlin%20bicetre.svg",
+  "population": 24110,
+  "latitude": 48.81,
+  "longitude": 2.35806,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 188,
+  "name": "Fontenay-aux-Roses",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Fontenay-aux-Roses%20%28Hauts-de-Seine%29.svg",
+  "population": 24070,
+  "latitude": 48.78932,
+  "longitude": 2.28877,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 189,
+  "name": "Montgeron",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Montgeron.svg",
+  "population": 24022,
+  "latitude": 48.70391,
+  "longitude": 2.46051,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 190,
+  "name": "Rodez",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20france%20Rodez.svg",
+  "population": 23981,
+  "latitude": 44.35056,
+  "longitude": 2.575,
+  "department": "12",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 191,
+  "name": "Beaupréau",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Beaupr%C3%A9au%20%28Maine-et-Loire%29.svg",
+  "population": 23851,
+  "latitude": 47.20278,
+  "longitude": -0.99333,
+  "department": "49",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 192,
+  "name": "Les Lilas",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Les%20Lilas%2093.svg",
+  "population": 23843,
+  "latitude": 48.88,
+  "longitude": 2.4169,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 193,
+  "name": "Dole",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Dole%20%28Jura%29.svg",
+  "population": 23840,
+  "latitude": 47.09222,
+  "longitude": 5.48972,
+  "department": "39",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 194,
+  "name": "La Valette-du-Var",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20La%20Valette-du-Var%20%28Var%29.svg",
+  "population": 23719,
+  "latitude": 43.13833,
+  "longitude": 5.98306,
+  "department": "83",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 195,
+  "name": "Dammarie-lès-Lys",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Dammarie-les-Lys%20%28Seine-et-Marne%29.svg",
+  "population": 23559,
+  "latitude": 48.51423,
+  "longitude": 2.63496,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 196,
+  "name": "Olivet",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20fr%20Olivet%20%28Loiret%29.svg",
+  "population": 23507,
+  "latitude": 47.86306,
+  "longitude": 1.89972,
+  "department": "45",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 197,
+  "name": "Hérouville-Saint-Clair",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20H%C3%A9rouville-Saint-Clair%2014.svg",
+  "population": 23470,
+  "latitude": 49.20361,
+  "longitude": -0.32639,
+  "department": "14",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 198,
+  "name": "Rochefort",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Rochefort%20%28Charente-Maritime%29.svg",
+  "population": 23460,
+  "latitude": 45.94194,
+  "longitude": -0.96694,
+  "department": "17",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 199,
+  "name": "Combs-la-Ville",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Combs-la-Ville.svg",
+  "population": 23350,
+  "latitude": 48.67,
+  "longitude": 2.56,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 200,
+  "name": "Lanester",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Lanester.svg",
+  "population": 23263,
+  "latitude": 47.7647,
+  "longitude": -3.3422,
+  "department": "56",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 201,
+  "name": "Roissy-en-Brie",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Roissy-en-Brie%20%28Seine-et-Marne%29.svg",
+  "population": 23229,
+  "latitude": 48.7906,
+  "longitude": 2.6519,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 202,
+  "name": "Tassin-la-Demi-Lune",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Tassin-la-Demi-Lune%20%28Rh%C3%B4ne%29.svg",
+  "population": 23200,
+  "latitude": 45.76417,
+  "longitude": 4.78056,
+  "department": "69",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 203,
+  "name": "Saint-Jean-de-Braye",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20fr%20ville%20Saint-Jean-de-Braye%20%28Loiret%29.svg",
+  "population": 23147,
+  "latitude": 47.91278,
+  "longitude": 1.97194,
+  "department": "45",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 204,
+  "name": "Deuil-la-Barre",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Deuil-la-Barre%28Val-d%27Oise%29.svg",
+  "population": 23099,
+  "latitude": 48.9757,
+  "longitude": 2.3276,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 205,
+  "name": "Maisons-Laffitte",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Maisons-Laffitte%20%28Yvelines%29.svg",
+  "population": 23093,
+  "latitude": 48.94694,
+  "longitude": 2.14556,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 206,
+  "name": "Le Moule",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20de%20le%20moule.jpg",
+  "population": 23014,
+  "latitude": 16.33111,
+  "longitude": -61.34361,
+  "department": "971",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 207,
+  "name": "Vélizy-Villacoublay",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20V%C3%A9lizy-Villacoublay%20%28Yvelines%29.svg",
+  "population": 23011,
+  "latitude": 48.7842,
+  "longitude": 2.1892,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 208,
+  "name": "Challans",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Challans%20%28Vend%C3%A9e%29.svg",
+  "population": 22943,
+  "latitude": 46.84667,
+  "longitude": -1.87806,
+  "department": "85",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 209,
+  "name": "Saint-Dizier",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Saint-Dizier%20%2852%29.svg",
+  "population": 22858,
+  "latitude": 48.63927,
+  "longitude": 4.95246,
+  "department": "52",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 210,
+  "name": "Torcy",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Torcy%20%28Seine-et-Marne%29.svg",
+  "population": 22810,
+  "latitude": 48.85028,
+  "longitude": 2.65083,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 211,
+  "name": "Saint-Louis",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Saint-Louis%20%28Haut-Rhin%29.svg",
+  "population": 22805,
+  "latitude": 47.58528,
+  "longitude": 7.565,
+  "department": "68",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 212,
+  "name": "Manosque",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20manosque.svg",
+  "population": 22718,
+  "latitude": 43.83417,
+  "longitude": 5.78389,
+  "department": "04",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 213,
+  "name": "Loos",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Loos%20%28Nord%29.svg",
+  "population": 22567,
+  "latitude": 50.61222,
+  "longitude": 3.01361,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 214,
+  "name": "Gif-sur-Yvette",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Gif-sur-Yvette%20%28Essonne%29.svg",
+  "population": 22544,
+  "latitude": 48.70181,
+  "longitude": 2.13393,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 215,
+  "name": "Les Pennes-Mirabeau",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20des%20Pennes-Mirabeau%20%2813%29.svg",
+  "population": 22537,
+  "latitude": 43.41056,
+  "longitude": 5.31028,
+  "department": "13",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 216,
+  "name": "Oyonnax",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Oyonnax%20%28Ain%29.svg",
+  "population": 22480,
+  "latitude": 46.2561,
+  "longitude": 5.6555,
+  "department": "01",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 217,
+  "name": "Montigny-lès-Cormeilles",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Montigny-les-Cormeilles%20%28Val-d%27Oise%29.svg",
+  "population": 22457,
+  "latitude": 48.99389,
+  "longitude": 2.195,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 218,
+  "name": "Auch",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Auch%2032.svg",
+  "population": 22428,
+  "latitude": 43.6465,
+  "longitude": 0.5855,
+  "department": "32",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 219,
+  "name": "Abbeville",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Abbeville%20%28Somme%29.svg",
+  "population": 22395,
+  "latitude": 50.10583,
+  "longitude": 1.83405,
+  "department": "80",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 220,
+  "name": "Villeneuve-sur-Lot",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Villeneuve-sur-Lot%20%28Lot-et-Garonne%29.svg",
+  "population": 22350,
+  "latitude": 44.40806,
+  "longitude": 0.705,
+  "department": "47",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 221,
+  "name": "Mantes-la-Ville",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Mantes-la-Ville%20%28Yvelines%29.svg",
+  "population": 22332,
+  "latitude": 48.975,
+  "longitude": 1.71167,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 222,
+  "name": "Sèvres",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20S%C3%A8vres%2092.svg",
+  "population": 22303,
+  "latitude": 48.82389,
+  "longitude": 2.21167,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 223,
+  "name": "Montereau-Fault-Yonne",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Montereau-Faut-Yonne.svg",
+  "population": 22279,
+  "latitude": 48.3853,
+  "longitude": 2.9508,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 224,
+  "name": "Achères",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Ach%C3%A8res%20%28Yvelines%29.svg",
+  "population": 22241,
+  "latitude": 48.96222,
+  "longitude": 2.06861,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 225,
+  "name": "Arcueil",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20arcueil%2094.svg",
+  "population": 22200,
+  "latitude": 48.8075,
+  "longitude": 2.33611,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 226,
+  "name": "Épernay",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Epernay%2051.svg",
+  "population": 22174,
+  "latitude": 49.04028,
+  "longitude": 3.96,
+  "department": "51",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 227,
+  "name": "Gujan-Mestras",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Gujan-Mestras%20%28Gironde%29.svg",
+  "population": 22153,
+  "latitude": 44.6364,
+  "longitude": -1.06667,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 228,
+  "name": "Dax",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Dax%2040.svg",
+  "population": 22109,
+  "latitude": 43.7072,
+  "longitude": -1.0553,
+  "department": "40",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 229,
+  "name": "Millau",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Millau.svg",
+  "population": 22044,
+  "latitude": 44.09861,
+  "longitude": 3.07833,
+  "department": "12",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 230,
+  "name": "Fontaine",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Fontaine.svg",
+  "population": 22020,
+  "latitude": 45.19306,
+  "longitude": 5.68472,
+  "department": "38",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 231,
+  "name": "Longjumeau",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Longjumeau%20%28Essonne%29.svg",
+  "population": 21996,
+  "latitude": 48.69426,
+  "longitude": 2.29584,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 232,
+  "name": "Neuilly-Plaisance",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Neuilly-Plaisance%2093.svg",
+  "population": 21941,
+  "latitude": 48.8619,
+  "longitude": 2.5064,
+  "department": "93",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 233,
+  "name": "Hazebrouck",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Hazebrouck%20%2859%29%20Nord-France.svg",
+  "population": 21912,
+  "latitude": 50.725,
+  "longitude": 2.53917,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 234,
+  "name": "Nogent-sur-Oise",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20nogent%20sur%20oise%20fr.svg",
+  "population": 21907,
+  "latitude": 49.27556,
+  "longitude": 2.46833,
+  "department": "60",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 235,
+  "name": "Voiron",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Voiron.svg",
+  "population": 21847,
+  "latitude": 45.36417,
+  "longitude": 5.59056,
+  "department": "38",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 236,
+  "name": "Fleury-les-Aubrais",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Fleury-les-Aubrais%20%2845%29.svg",
+  "population": 21804,
+  "latitude": 47.93111,
+  "longitude": 1.92083,
+  "department": "45",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 237,
+  "name": "La Madeleine",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20La%20Madeleine%20%2859%29%20Nord-France.svg",
+  "population": 21790,
+  "latitude": 50.65528,
+  "longitude": 3.07028,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 238,
+  "name": "Saint-Michel-sur-Orge",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Saint-Michel-sur-Orge%20%28Essonne%29.svg",
+  "population": 21776,
+  "latitude": 48.63033,
+  "longitude": 2.30254,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 239,
+  "name": "Montmorency",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20maison%20fr%20de%20Montmorency.svg",
+  "population": 21763,
+  "latitude": 48.98972,
+  "longitude": 2.32194,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 240,
+  "name": "Montigny-lès-Metz",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Montigny-l%C3%A8s-Metz%20%28Moselle%29.svg",
+  "population": 21718,
+  "latitude": 49.10056,
+  "longitude": 6.15389,
+  "department": "57",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 241,
+  "name": "Sainte-Foy-lès-Lyon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Sainte-Foy-l%C3%A8s-Lyon%20%28Rh%C3%B4ne%29.svg",
+  "population": 21692,
+  "latitude": 45.73472,
+  "longitude": 4.80333,
+  "department": "69",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 242,
+  "name": "Morsang-sur-Orge",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Morsang-sur-Orge%20%28Essonne%29.svg",
+  "population": 21667,
+  "latitude": 48.66176,
+  "longitude": 2.34612,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 243,
+  "name": "Mandelieu-la-Napoule",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/CoA%20fr%20Mandelieu-La%20Napoule%2006.svg",
+  "population": 21640,
+  "latitude": 43.54639,
+  "longitude": 6.93806,
+  "department": "06",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 244,
+  "name": "Gardanne",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Gardanne%20%2813%29.svg",
+  "population": 21597,
+  "latitude": 43.45528,
+  "longitude": 5.47667,
+  "department": "13",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 245,
+  "name": "Seynod",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20fr%20ville%20Seynod.svg",
+  "population": 21595,
+  "latitude": 45.88972,
+  "longitude": 6.09667,
+  "department": "74",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 246,
+  "name": "Le Robert",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20du%20ROBERT.jpg",
+  "population": 21553,
+  "latitude": 14.6775,
+  "longitude": -60.93917,
+  "department": "972",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 247,
+  "name": "Lagny-sur-Marne",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Lagny-sur-Marne%2077.svg",
+  "population": 21461,
+  "latitude": 48.8788,
+  "longitude": 2.7075,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 248,
+  "name": "Allauch",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20d%27Allauch%20%2813%29.svg",
+  "population": 21443,
+  "latitude": 43.33694,
+  "longitude": 5.48278,
+  "department": "13",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 249,
+  "name": "Bruay-la-Buissière",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Bruay-la-Buissi%C3%A8re.svg",
+  "population": 21424,
+  "latitude": 50.48194,
+  "longitude": 2.54861,
+  "department": "62",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 250,
+  "name": "Annecy-le-Vieux",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Annecy-le-Vieux%20%28Haute-Savoie%29.svg",
+  "population": 21390,
+  "latitude": 45.92,
+  "longitude": 6.14278,
+  "department": "74",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 251,
+  "name": "Givors",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Givors%20%28Rh%C3%B4ne%29.svg",
+  "population": 21379,
+  "latitude": 45.59139,
+  "longitude": 4.76944,
+  "department": "69",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 252,
+  "name": "Saint-Gratien",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Saint-Gratien%20%28Val-d%27Oise%29.svg",
+  "population": 21336,
+  "latitude": 48.97111,
+  "longitude": 2.28194,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 253,
+  "name": "Saint-Cyr-l'École",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Saint-Cyr-l%27%C3%89cole%20%28Yvelines%29.svg",
+  "population": 21268,
+  "latitude": 48.80083,
+  "longitude": 2.0633,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 254,
+  "name": "Ozoir-la-Ferrière",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Ozoir-la-Ferri%C3%A8re%20%28Seine-et-Marne%29.svg",
+  "population": 21238,
+  "latitude": 48.778,
+  "longitude": 2.68,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 255,
+  "name": "Saint-Genis-Laval",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Saint-Genis-Laval%20%2869%29.svg",
+  "population": 21212,
+  "latitude": 45.69611,
+  "longitude": 4.79389,
+  "department": "69",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 256,
+  "name": "Le Plessis-Trévise",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Le%20Plessis-Tr%C3%A9vise%2094.svg",
+  "population": 21112,
+  "latitude": 48.81111,
+  "longitude": 2.57167,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 257,
+  "name": "Mons-en-Barœul",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Mons%20en%20Baroeul%2059.svg",
+  "population": 21105,
+  "latitude": 50.64278,
+  "longitude": 3.10833,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 258,
+  "name": "Plaisance-du-Touch",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Plaisance-du-Touch%20%28Haute-Garonne%29.svg",
+  "population": 21079,
+  "latitude": 43.56667,
+  "longitude": 1.29722,
+  "department": "31",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 259,
+  "name": "Saint-Mandé",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Saint-Mand%C3%A9%2094.svg",
+  "population": 21071,
+  "latitude": 48.84222,
+  "longitude": 2.41861,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 260,
+  "name": "Bourg-la-Reine",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20Brest.svg",
+  "population": 21019,
+  "latitude": 48.77962,
+  "longitude": 2.31507,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 261,
+  "name": "Villeneuve-le-Roi",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Villeneuve%20le%20roi%2094.svg",
+  "population": 21000,
+  "latitude": 48.73333,
+  "longitude": 2.41667,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 262,
+  "name": "Carquefou",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Carquefou%20%28Loire-Atlantique%29.svg",
+  "population": 20921,
+  "latitude": 47.2975,
+  "longitude": -1.49139,
+  "department": "44",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 263,
+  "name": "Sceaux",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Sceaux%2092.svg",
+  "population": 20884,
+  "latitude": 48.7786,
+  "longitude": 2.2906,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 264,
+  "name": "Concarneau",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Concarneau%20%28Finist%C3%A8re%29.svg",
+  "population": 20845,
+  "latitude": 47.87611,
+  "longitude": -3.91778,
+  "department": "29",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 265,
+  "name": "Chaumont",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Chaumont%20%2852%29.svg",
+  "population": 20827,
+  "latitude": 48.11083,
+  "longitude": 5.13861,
+  "department": "52",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 266,
+  "name": "Lingolsheim",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Lingolsheim%2068.svg",
+  "population": 20826,
+  "latitude": 48.5581,
+  "longitude": 7.6836,
+  "department": "67",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 267,
+  "name": "Carrières-sous-Poissy",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Carri%C3%A8res-sous-Poissy%20%28Yvelines%29.svg",
+  "population": 20825,
+  "latitude": 48.9486,
+  "longitude": 2.0394,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 268,
+  "name": "Coudekerque-Branche",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Coudekerque-Branche%20%28Nord%29.svg",
+  "population": 20787,
+  "latitude": 51.02528,
+  "longitude": 2.39167,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 269,
+  "name": "Wasquehal",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Wasquehal.png",
+  "population": 20726,
+  "latitude": 50.66945,
+  "longitude": 3.13083,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 270,
+  "name": "Halluin",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Halluin%2059.svg",
+  "population": 20715,
+  "latitude": 50.78361,
+  "longitude": 3.12556,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 271,
+  "name": "La Chapelle-sur-Erdre",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Chapelle-Sur-Erdre.svg",
+  "population": 20690,
+  "latitude": 47.29972,
+  "longitude": -1.55167,
+  "department": "44",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 272,
+  "name": "Denain",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Denain%20%28Nord%29.svg",
+  "population": 20665,
+  "latitude": 50.32944,
+  "longitude": 3.39583,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 273,
+  "name": "Cugnaux",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Cugnaux%20%28Haute-Garonne%29.svg",
+  "population": 20662,
+  "latitude": 43.53861,
+  "longitude": 1.34444,
+  "department": "31",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 274,
+  "name": "Maurepas",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Maurepas%20%28Yvelines%29.svg",
+  "population": 20629,
+  "latitude": 48.76278,
+  "longitude": 1.94556,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 275,
+  "name": "Chaville",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Chaville%20%28Hauts-de-Seine%29.svg",
+  "population": 20594,
+  "latitude": 48.80861,
+  "longitude": 2.18861,
+  "department": "92",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 276,
+  "name": "Croix",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Croix%20%2859%29%20Nord-France.svg",
+  "population": 20566,
+  "latitude": 50.67472,
+  "longitude": 3.15389,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 277,
+  "name": "Bouguenais",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%2044%20Bouguenais.svg",
+  "population": 20530,
+  "latitude": 47.18,
+  "longitude": -1.62361,
+  "department": "44",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 278,
+  "name": "Joinville-le-Pont",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Joinville-le-Pont%2094.svg",
+  "population": 20525,
+  "latitude": 48.82139,
+  "longitude": 2.47278,
+  "department": "94",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 279,
+  "name": "Le Creusot",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Le%20Creusot%20%28Sa%C3%B4ne-et-Loire%29.svg",
+  "population": 20509,
+  "latitude": 46.8014,
+  "longitude": 4.4411,
+  "department": "71",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 280,
+  "name": "Forbach",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Forbach%2057.svg",
+  "population": 20493,
+  "latitude": 49.18888,
+  "longitude": 6.90083,
+  "department": "57",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 281,
+  "name": "Saint-Pol-sur-Mer",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Saint-Pol-sur-Mer%201%20%2859%29%20Nord-France.svg",
+  "population": 20479,
+  "latitude": 51.03139,
+  "longitude": 2.34389,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 282,
+  "name": "La Celle-Saint-Cloud",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20La%20Celle-Saint-Cloud%20%28Yvelines%29.svg",
+  "population": 20460,
+  "latitude": 48.8411,
+  "longitude": 2.1344,
+  "department": "78",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 283,
+  "name": "Mitry-Mory",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Mitry-Mory%20%28Seine-et-Marne%29.svg",
+  "population": 20456,
+  "latitude": 48.98333,
+  "longitude": 2.61667,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 284,
+  "name": "Chilly-Mazarin",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Chilly-Mazarin%20%28Essonne%29.svg",
+  "population": 20443,
+  "latitude": 48.70252,
+  "longitude": 2.31252,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 285,
+  "name": "Beaune",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Beaune%20%2821%29.svg",
+  "population": 20352,
+  "latitude": 47.025,
+  "longitude": 4.83972,
+  "department": "21",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 286,
+  "name": "Lannion",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Lannion%20%28C%C3%B4tes-d%27Armor%29.svg",
+  "population": 20315,
+  "latitude": 48.73333,
+  "longitude": -3.45417,
+  "department": "22",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 287,
+  "name": "Fougères",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20foug%C3%A8res%20fr.svg",
+  "population": 20307,
+  "latitude": 48.3525,
+  "longitude": -1.19861,
+  "department": "35",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 288,
+  "name": "L'Isle-sur-la-Sorgue",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20L%27Isle-sur-la-Sorgue%20%28Vaucluse%29.svg",
+  "population": 20244,
+  "latitude": 43.91989,
+  "longitude": 5.05486,
+  "department": "84",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 289,
+  "name": "Grande-Synthe",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20de%20la%20ville%20de%20Grande-Synthe%20%2859%29%20Nord-France.svg",
+  "population": 20239,
+  "latitude": 51.01389,
+  "longitude": 2.30278,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 290,
+  "name": "Mont-Saint-Aignan",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Mont-Saint-Aignan%20%28Seine-Maritime%29.svg",
+  "population": 20165,
+  "latitude": 49.4625,
+  "longitude": 1.0872,
+  "department": "76",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 291,
+  "name": "Sarreguemines",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%2057%20Sarreguemines.svg",
+  "population": 20143,
+  "latitude": 49.11111,
+  "longitude": 7.06806,
+  "department": "57",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 292,
+  "name": "Cahors",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20Ville%20Cahors%20fr%20%28Lot%29.svg",
+  "population": 20050,
+  "latitude": 44.44833,
+  "longitude": 1.44139,
+  "department": "46",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 293,
+  "name": "Bruges",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason%20ville%20fr%20Bruges%20%28Gironde%29.svg",
+  "population": 20020,
+  "latitude": 44.8833,
+  "longitude": -0.6142,
+  "department": "33",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 294,
+  "name": "Osny",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason_ville_fr_Osny_%28Val-d%27Oise%29.svg",
+  "population": 17954,
+  "latitude": 49.05917,
+  "longitude": 2.0625,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 295,
+  "name": "Lieusaint",
+  "image": null,
+  "population": 14096,
+  "latitude": 48.63222,
+  "longitude": 2.54861,
+  "department": "77",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 296,
+  "name": "Dourdan",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason_ville_fr_Dourdan_%28Essonne%29.svg",
+  "population": 11415,
+  "latitude": 48.52889,
+  "longitude": 2.01083,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 297,
+  "name": "Épinay-sur-Orge",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason_ville_fr_Epinay-sur-Orge_%28Essonne%29.svg",
+  "population": 10722,
+  "latitude": 48.67389,
+  "longitude": 2.32722,
+  "department": "91",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 298,
+  "name": "Mazamet",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason_ville_fr_Mazamet_%28Tarn%29.svg",
+  "population": 10085,
+  "latitude": 43.4666,
+  "longitude": 2.3863,
+  "department": "81",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 299,
+  "name": "Aulnoye-Aymeries",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason_ville_fr_Aulnoye-Aymeries_%28Nord%29.svg",
+  "population": 8612,
+  "latitude": 50.2036,
+  "longitude": 3.8312,
+  "department": "59",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 300,
+  "name": "Auvers-sur-Oise",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason_ville_fr_Auvers-sur-Oise_%28Val-d%27Oise%29.svg",
+  "population": 6863,
+  "latitude": 49.07167,
+  "longitude": 2.17417,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 301,
+  "name": "Ennery",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason_ville_fr_Ennery_%28Val-d%27Oise%29.svg",
+  "population": 2243,
+  "latitude": 49.07444,
+  "longitude": 2.10611,
+  "department": "95",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 302,
+  "name": "Hautpoul",
+  "image": null,
+  "population": 0,
+  "latitude": 43.47578,
+  "longitude": 2.37858,
+  "department": "81",
+  "created_at": "2026-10-09"
+ },
+ {
+  "id": 303,
+  "name": "Saint-Martin-du-Tertre",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Blason_ville_fr_Saint-Martin-du-Tertre_%28Val-d%27Oise%29.svg",
+  "population": 2689,
+  "latitude": 49.10667,
+  "longitude": 2.34556,
+  "department": "95",
+  "created_at": "2026-10-17"
+ }
+]

@@ -1,0 +1,488 @@
+{
+  "languages": {
+    "default": "fr",
+    "available": [
+      {
+        "code": "fr",
+        "label": "FR",
+        "flag": "fr"
+      },
+      {
+        "code": "en",
+        "label": "EN",
+        "flag": "gb"
+      }
+    ]
+  },
+  "theme": {
+    "default": "light",
+    "toggle": true
+  },
+  "home": {
+    "image": ""
+  },
+  "cities": {
+    "source": "assets/data/cities-FR.json"
+  },
+  "defaultPlace": 300,
+  "places": [
+    {
+      "id": 101
+    },
+    {
+      "id": 303
+    },
+    {
+      "id": 300
+    }
+  ],
+  "budgets": [
+    {
+      "id": "b50",
+      "amount": 50
+    },
+    {
+      "id": "b100",
+      "amount": 100
+    },
+    {
+      "id": "b150",
+      "amount": 150
+    },
+    {
+      "id": "free",
+      "free": true,
+      "min": 5
+    }
+  ],
+  "trees": {
+    "source": "assets/data/trees.json",
+    "offerTypes": [
+      "fruitier",
+      "ornement"
+    ],
+    "byType": {},
+    "byId": {
+      "3": {
+        "_name": "Abricotier",
+        "byPlace": {
+          "300": {
+            "status": "unavailable"
+          }
+        }
+      },
+      "104": {
+        "_name": "Cerisier",
+        "byPlace": {
+          "300": {
+            "status": "unavailable"
+          },
+          "303": {
+            "planted": true
+          }
+        }
+      },
+      "219": {
+        "_name": "Figuier",
+        "byPlace": {
+          "303": {
+            "planted": true
+          }
+        }
+      },
+      "247": {
+        "_name": "Hibiscus des marais",
+        "byPlace": {
+          "300": {
+            "status": "unavailable"
+          },
+          "101": {
+            "status": "unavailable"
+          },
+          "303": {
+            "planted": true
+          }
+        }
+      },
+      "286": {
+        "_name": "Liquidambar styraciflua",
+        "byPlace": {
+          "300": {
+            "status": "sponsored",
+            "sponsor": "Ambre",
+            "planted": true
+          },
+          "303": {
+            "status": "unavailable"
+          },
+          "101": {
+            "status": "unavailable"
+          }
+        }
+      },
+      "293": {
+        "_name": "Magnolia",
+        "byPlace": {
+          "300": {
+            "status": "unavailable"
+          },
+          "303": {
+            "planted": true
+          }
+        }
+      },
+      "406": {
+        "_name": "Poirier commun",
+        "byPlace": {
+          "303": {
+            "planted": true
+          },
+          "300": {
+            "planted": true
+          }
+        }
+      },
+      "411": {
+        "_name": "Pommier",
+        "byPlace": {
+          "300": {
+            "status": "unavailable"
+          },
+          "303": {
+            "planted": true
+          }
+        }
+      },
+      "421": {
+        "_name": "Prunier Reine Claude violette",
+        "byPlace": {
+          "300": {
+            "status": "unavailable"
+          },
+          "101": {
+            "planted": true
+          }
+        }
+      },
+      "444": {
+        "_name": "Pêcher",
+        "byPlace": {
+          "300": {
+            "planted": true,
+            "status": "sponsored",
+            "sponsor": "Emeline et Hélène"
+          }
+        },
+        "minAmount": 50
+      },
+      "472": {
+        "_name": "Saule crevette",
+        "byPlace": {
+          "300": {
+            "status": "unavailable"
+          },
+          "101": {
+            "planted": true
+          }
+        }
+      },
+      "542": {
+        "_name": "Camélia",
+        "byPlace": {
+          "303": {
+            "status": "unavailable"
+          },
+          "101": {
+            "status": "unavailable"
+          },
+          "300": {
+            "planted": true
+          }
+        }
+      },
+      "543": {
+        "_name": "Seringat",
+        "byPlace": {
+          "101": {
+            "status": "unavailable"
+          },
+          "300": {
+            "planted": true
+          }
+        }
+      },
+      "544": {
+        "_name": "Laurier rose",
+        "byPlace": {
+          "303": {
+            "status": "unavailable"
+          },
+          "101": {
+            "status": "unavailable"
+          },
+          "300": {
+            "planted": true
+          }
+        }
+      },
+      "545": {
+        "_name": "Poivrier du Sichuan",
+        "byPlace": {
+          "300": {
+            "planted": true
+          }
+        }
+      },
+      "546": {
+        "_name": "Eucalyptus à feuilles rondes",
+        "byPlace": {
+          "101": {
+            "status": "unavailable"
+          },
+          "303": {
+            "status": "unavailable"
+          },
+          "300": {
+            "planted": true
+          }
+        }
+      },
+      "547": {
+        "_name": "Oranger du Mexique",
+        "byPlace": {
+          "101": {
+            "status": "unavailable"
+          },
+          "303": {
+            "status": "unavailable"
+          },
+          "300": {
+            "planted": true
+          }
+        }
+      },
+      "548": {
+        "_name": "Arbre commun à vœux",
+        "note": "shared"
+      }
+    },
+    "premiumAmounts": [
+      150
+    ],
+    "freePriceTrees": [
+      548
+    ]
+  },
+  "customText": {
+    "enabled": true,
+    "maxLength": 25
+  },
+  "email": {
+    "toEncoded": "Z2lmdGdhcmRlbi45NUBwcm90b24ubWU=",
+    "label": "GiftGarden"
+  },
+  "texts": {
+    "fr": {
+      "siteTitle": "GiftGarden",
+      "home": {
+        "title": "Un événement, un arbre",
+        "text": "Parrainez un arbre fruitier ou ornemental dans le Val d'Oise.\n\nChoisissez le montant, l'arbre et l'évènement à célébrer ou immortaliser.\n\nVenez participer à la cueillette annuelle et évènements des jardins. Recevez également des nouvelles trimestrielles et photos de vos arbres.",
+        "button": "GO!"
+      },
+      "back": "← Accueil",
+      "themeLabel": "Changer de thème",
+      "langLabel": "Langue",
+      "steps": {
+        "place": "1. Où planter ?",
+        "budget": "2. Budget",
+        "tree": "3. Quel arbre ?",
+        "message": "4. Message",
+        "contact": "5. Vos coordonnées"
+      },
+      "messageLabel": "Ligne 3 : un message pour la personne qui recevra l'arbre",
+      "amountLabel": "Montant (€)",
+      "amountMin": "min. {n}",
+      "searchTree": "Rechercher un arbre",
+      "noTree": "Aucun arbre trouvé.",
+      "money": "{n} €",
+      "reasons": {
+        "place": "Indisponible pour ce lieu",
+        "budget": "Indisponible pour ce budget",
+        "from": "À partir de {n}",
+        "upto": "Jusqu'à {n}",
+        "premiumAmount": "Réservé au montant de {n}",
+        "sponsored": "Déjà parrainé",
+        "freePrice": "Indisponible pour un prix libre"
+      },
+      "summary": {
+        "title": "Récapitulatif",
+        "empty": "Complétez les champs ci-dessus pour valider.",
+        "labels": {
+          "place": "Lieu",
+          "budget": "Budget",
+          "amount": "Montant",
+          "tree": "Arbre",
+          "message": "Message",
+          "name": "Nom",
+          "phone": "Téléphone"
+        }
+      },
+      "validate": "Valider",
+      "status": {
+        "sending": "Envoi en cours…",
+        "sent": "✅ Votre demande a bien été envoyée.",
+        "failed": "L'envoi automatique a échoué : votre messagerie va s'ouvrir avec le message prêt à envoyer."
+      },
+      "mail": {
+        "subject": "GiftGarden : nouvelle commande",
+        "place": "Lieu",
+        "amount": "Montant",
+        "tree": "Arbre",
+        "message": "Message",
+        "name": "Nom",
+        "phone": "Téléphone",
+        "source": "Origine"
+      },
+      "budgets": {
+        "b50": "50 €",
+        "b100": "100 €",
+        "b150": "150 €",
+        "free": "Prix libre"
+      },
+      "siteSubtitle": "Offrez un arbre",
+      "nameLabel": "Votre nom",
+      "phoneLabel": "Votre téléphone",
+      "phoneInvalid": "Numéro de téléphone invalide",
+      "thanks": {
+        "title": "Merci {name} !",
+        "text": "Votre demande a bien été envoyée. Voici le récapitulatif de votre commande.",
+        "again": "Faire une autre demande",
+        "home": "Retour à l'accueil"
+      },
+      "messageTooLong": "Message trop long : {max} caractères maximum.",
+      "messageLine1Label": "Ligne 1 : nom français",
+      "messageLine2Label": "Ligne 2 : nom latin (entre parenthèses)",
+      "messageExample": "Exemple : Baptême d'Ambre - 2026",
+      "namePlaceholder": "Ex. : Jane Doe",
+      "phonePlaceholder": "Ex. : 06 12 34 56 78",
+      "premiumTitle": "Sélection premium",
+      "treeStatus": {
+        "availability": "Disponibilité",
+        "all": "Tous",
+        "available": "Disponible",
+        "sponsored": "Parrainé",
+        "unavailable": "Indisponible",
+        "sponsoredBy": "par {name}"
+      },
+      "premiumSubtitle": "Offre entreprise - compensez vos usages IA Claude en plantant des Magnolias Forever",
+      "treeNotes": {
+        "shared": "Cet arbre sera partagé avec plusieurs bienfaiteurs."
+      }
+    },
+    "en": {
+      "siteTitle": "GiftGarden",
+      "home": {
+        "title": "One event, one tree",
+        "text": "Sponsor a fruit or ornamental tree in the Val d'Oise.\n\nChoose the amount, the tree and the event to celebrate or immortalise.\n\nCome and join the annual harvest and the garden events. You will also receive quarterly news and photos of your trees.",
+        "button": "GO!"
+      },
+      "back": "← Home",
+      "themeLabel": "Toggle theme",
+      "langLabel": "Language",
+      "steps": {
+        "place": "1. Where to plant?",
+        "budget": "2. Budget",
+        "tree": "3. Which tree?",
+        "message": "4. Message",
+        "contact": "5. Your details"
+      },
+      "messageLabel": "Line 3: a message for the person who will receive the tree",
+      "amountLabel": "Amount (€)",
+      "amountMin": "min. {n}",
+      "searchTree": "Search for a tree",
+      "noTree": "No tree found.",
+      "money": "€{n}",
+      "reasons": {
+        "place": "Not available for this place",
+        "budget": "Not available for this budget",
+        "from": "From {n}",
+        "upto": "Up to {n}",
+        "premiumAmount": "Only for {n}",
+        "sponsored": "Already sponsored",
+        "freePrice": "Not available for a free price"
+      },
+      "summary": {
+        "title": "Summary",
+        "empty": "Fill in the fields above to confirm.",
+        "labels": {
+          "place": "Place",
+          "budget": "Budget",
+          "amount": "Amount",
+          "tree": "Tree",
+          "message": "Message",
+          "name": "Name",
+          "phone": "Phone"
+        }
+      },
+      "validate": "Confirm",
+      "status": {
+        "sending": "Sending…",
+        "sent": "✅ Your request has been sent.",
+        "failed": "Automatic sending failed: your mail app will open with the message ready to send."
+      },
+      "mail": {
+        "subject": "GiftGarden: new order",
+        "place": "Place",
+        "amount": "Amount",
+        "tree": "Tree",
+        "message": "Message",
+        "name": "Name",
+        "phone": "Phone",
+        "source": "Source"
+      },
+      "budgets": {
+        "b50": "€50",
+        "b100": "€100",
+        "b150": "€150",
+        "free": "Free price"
+      },
+      "siteSubtitle": "Give a tree",
+      "nameLabel": "Your name",
+      "phoneLabel": "Your phone number",
+      "phoneInvalid": "Invalid phone number",
+      "thanks": {
+        "title": "Thank you {name}!",
+        "text": "Your request has been sent. Here is the summary of your order.",
+        "again": "Make another request",
+        "home": "Back to home"
+      },
+      "messageTooLong": "Message too long: {max} characters maximum.",
+      "messageLine1Label": "Line 1: common name",
+      "messageLine2Label": "Line 2: Latin name (in parentheses)",
+      "messageExample": "Example: Ambre's christening - 2026",
+      "namePlaceholder": "E.g. Jane Doe",
+      "phonePlaceholder": "E.g. +33 6 12 34 56 78",
+      "premiumTitle": "Premium selection",
+      "treeStatus": {
+        "availability": "Availability",
+        "all": "All",
+        "available": "Available",
+        "sponsored": "Sponsored",
+        "unavailable": "Unavailable",
+        "sponsoredBy": "by {name}"
+      },
+      "premiumSubtitle": "Business offer - offset your Claude AI usage by planting Magnolias Forever",
+      "treeNotes": {
+        "shared": "This tree will be shared with several benefactors."
+      }
+    }
+  },
+  "contact": {
+    "name": {
+      "required": true
+    },
+    "phone": {
+      "required": true
+    }
+  }
+}

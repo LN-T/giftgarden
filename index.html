@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https:; connect-src 'self' https://formsubmit.co; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <title>GiftGarden</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header>
+    <div class="wrap">
+        <div class="top">
+            <div class="brand"><h1 id="site-title"></h1><span id="site-subtitle"></span></div>
+            <div class="ctl">
+                <button id="back" hidden></button>
+                <div id="lang" class="picker" hidden>
+                    <button id="lang-btn" aria-haspopup="listbox" aria-expanded="false"></button>
+                    <ul id="lang-menu" role="listbox" hidden></ul>
+                </div>
+                <button id="theme">🌓</button>
+            </div>
+        </div>
+    </div>
+</header>
+<section id="home">
+    <img id="hero" alt="" hidden>
+    <h2 id="home-title"></h2>
+    <p id="home-text"></p>
+    <button id="go"></button>
+</section>
+<main id="app" hidden></main>
+<section id="thanks" hidden></section>
+<script src="assets/app.js"></script>
+</body>
+</html>
