@@ -57,6 +57,7 @@
   ],
   "trees": {
     "source": "assets/data/trees.json",
+    "searchMinTrees": 30,
     "offerTypes": [
       "fruitier",
       "ornement"
@@ -104,6 +105,7 @@
   "email": {
     "toEncoded": "Y29udGFjdEBleGFtcGxlLmNvbQ==",
     "formsubmit": false,
+    "formsubmitId": "",
     "label": "GiftGarden",
     "mailClientDelaySeconds": 4
   },

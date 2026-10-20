@@ -57,6 +57,7 @@
   ],
   "trees": {
     "source": "assets/data/trees.json",
+    "searchMinTrees": 30,
     "offerTypes": [
       "fruitier",
       "ornement"
@@ -79,6 +80,64 @@
           },
           "303": {
             "planted": true
+          }
+        }
+      },
+      "550": {
+        "_name": "Tamaris",
+        "byPlace": {
+          "300": {
+            "planted": true
+          },
+          "303": {
+            "status": "unavailable"
+          },
+          "101": {
+            "status": "unavailable"
+          }
+        }
+      },
+      "549": {
+        "_name": "Yuzu",
+        "byPlace": {
+          "300": {
+            "planted": true
+          },
+          "303": {
+            "status": "unavailable"
+          },
+          "101": {
+            "status": "unavailable"
+          }
+        }
+      },
+      "22": {
+        "_name": "Amandier",
+        "byPlace": {
+          "300": {
+            "status": "unavailable"
+          }
+        }
+      },
+      "552": {
+        "_name": "Nectarinier",
+        "byPlace": {
+          "300": {
+            "status": "unavailable"
+          }
+        }
+      },
+      "122": {
+        "_name": "Citronnier",
+        "byPlace": {
+          "300": {
+            "planted": true
+          },
+          "303": {
+            "status": "unavailable"
+          },
+          "101": {
+            "status": "unavailable"
           }
         }
       },
@@ -287,7 +346,8 @@
   },
   "email": {
     "toEncoded": "Z2lmdGdhcmRlbi45NUBwcm90b24ubWU=",
-    "formsubmit": false,
+    "formsubmit": true,
+    "formsubmitId": "2d4118b3f0d41c31bab25b5efae5723b",
     "label": "GiftGarden",
     "mailClientDelaySeconds": 4
   },

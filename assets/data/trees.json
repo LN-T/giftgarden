@@ -258,7 +258,7 @@
   "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/94_Amygdalus_communis_L.jpg/330px-94_Amygdalus_communis_L.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
   "url": "https://fr.wikipedia.org/wiki/Amandier",
   "created_at": "2026-10-09",
-  "available": false,
+  "available": true,
   "premium": false,
   "latin": null,
   "can_be_used_by_homepage_giftgarden": false
@@ -1482,10 +1482,10 @@
   "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Citrus_x_limon_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-041.jpg/330px-Citrus_x_limon_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-041.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
   "url": "https://fr.wikipedia.org/wiki/Citronnier",
   "created_at": "2026-10-09",
-  "available": false,
+  "available": true,
   "premium": false,
   "latin": null,
-  "can_be_used_by_homepage_giftgarden": false
+  "can_be_used_by_homepage_giftgarden": true
  },
  {
   "id": 123,
@@ -6573,6 +6573,54 @@
   "available": false,
   "premium": false,
   "latin": null,
+  "can_be_used_by_homepage_giftgarden": false
+ },
+ {
+  "id": 549,
+  "name": "Yuzu",
+  "type": "fruitier",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Pomological_Watercolor_POM00006375.jpg/960px-Pomological_Watercolor_POM00006375.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "url": "https://fr.wikipedia.org/wiki/Yuzu",
+  "created_at": "2026-10-20",
+  "available": true,
+  "premium": false,
+  "latin": "Citrus junos",
+  "can_be_used_by_homepage_giftgarden": true
+ },
+ {
+  "id": 550,
+  "name": "Tamaris",
+  "type": "ornement",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Tamaris_jt.jpg/330px-Tamaris_jt.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "url": "https://fr.wikipedia.org/wiki/Tamarix",
+  "created_at": "2026-10-20",
+  "available": true,
+  "premium": false,
+  "latin": "Tamarix gallica",
+  "can_be_used_by_homepage_giftgarden": false
+ },
+ {
+  "id": 551,
+  "name": "Églantier",
+  "type": "fruitier",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/106_Rosa_canina_L.jpg/330px-106_Rosa_canina_L.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "url": "https://fr.wikipedia.org/wiki/Rosa_canina",
+  "created_at": "2026-10-20",
+  "available": true,
+  "premium": false,
+  "latin": "Rosa canina",
+  "can_be_used_by_homepage_giftgarden": true
+ },
+ {
+  "id": 552,
+  "name": "Nectarinier",
+  "type": "fruitier",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Nectarines_summer_2006.jpg/330px-Nectarines_summer_2006.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "url": "https://fr.wikipedia.org/wiki/Nectarinier",
+  "created_at": "2026-10-20",
+  "available": true,
+  "premium": false,
+  "latin": "Prunus persica var. nucipersica",
   "can_be_used_by_homepage_giftgarden": false
  }
 ]

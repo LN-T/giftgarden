@@ -211,6 +211,47 @@ h2 {
     cursor: not-allowed
 }
 
+/* Gardens: dim the content, not the button, so the reason overlay shown on hover stays readable */
+.choice.place:disabled {
+    opacity: 1;
+    position: relative;
+    overflow: hidden
+}
+
+.choice.place:disabled {
+    border-style: dashed;
+    border-color: var(--line);
+    background: transparent
+}
+
+.choice.place:disabled > * {
+    opacity: .4
+}
+
+.choice.place:disabled img {
+    filter: grayscale(1)
+}
+
+.choice.place:disabled span {
+    text-decoration: line-through
+}
+
+.choice.place:disabled[data-reason]:hover::before {
+    content: attr(data-reason);
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    text-align: center;
+    background: color-mix(in srgb, var(--card) 90%, transparent);
+    color: var(--ink);
+    font-size: .8rem;
+    font-weight: 600
+}
+
 input[type=search] {
     width: 100%;
     margin-bottom: 10px
@@ -361,9 +402,30 @@ input[type=search] {
     background: linear-gradient(90deg, transparent, var(--gold), transparent)
 }
 
+/* Dim the card content, not the card itself, so the reason overlay shown on hover stays readable */
 .tree:disabled {
-    opacity: .45;
+    position: relative;
+    overflow: hidden;
     cursor: not-allowed
+}
+
+.tree:disabled > * {
+    opacity: .45
+}
+
+.tree:disabled[data-reason]:hover::before {
+    content: attr(data-reason);
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background: color-mix(in srgb, var(--card) 90%, transparent);
+    color: var(--ink);
+    font-size: .9rem;
+    font-weight: 600
 }
 
 /* Premium trees: a light sweep only (no gold border or glow, which made them look selected) */

@@ -1,5 +1,6 @@
 // Trees come from the catalog file (config.trees.source). Only trees with "available": true are shown (missing = false).
 // config.trees.offerTypes further limits which types are offered.
+// config.trees.searchMinTrees: the search bar is hidden when fewer trees than this are offered (missing = always shown).
 // Availability rules, set in config.trees.byType / byId (keyed by the tree's integer id in the catalog; byId wins; all optional, missing = no restriction):
 //   byPlace: { <city id>: { status: "unavailable" | "available" | "sponsored" (default available), sponsor: name shown when sponsored, premium: bool } }, note: key of texts.<lang>.treeNotes shown on the card, budgets: [budget ids], minAmount, maxAmount (effective amount in €)
 const app = document.getElementById('app');
@@ -41,6 +42,11 @@ const isPremium = tree => tree.premium || (sel.place && tree.byPlace?.[sel.place
 const treeInfo = tree => {
     const pr = (sel.place && tree.byPlace?.[sel.place]) || {};
     return {status: pr.status ?? 'available', sponsor: pr.sponsor ?? null};
+};
+// Once a tree is chosen, the places where it can't be had (unavailable or sponsored there) are disabled in the place list
+const placeBlocked = placeId => {
+    const st = cfg.trees.find(x => x.id === sel.tree)?.byPlace?.[placeId]?.status;
+    return st === 'unavailable' || st === 'sponsored';
 };
 const treeReason = tree => {
     const p = sel.place, b = cfg.budgets.find(x => x.id === sel.budget), a = sel.amount;
@@ -99,21 +105,21 @@ function render() {
 
     app.replaceChildren(
         section(T('steps.place'), ...[...cfg.places].sort((a, b) => placeLabel(a).localeCompare(placeLabel(b), lang)).map(x => el('button', {
-                class: 'choice place', 'aria-pressed': sel.place === x.id, onclick: () => {
+                class: 'choice place', 'aria-pressed': sel.place === x.id, disabled: placeBlocked(x.id), 'data-reason': placeBlocked(x.id) ? T('reasons.place') : null, onclick: () => {
                     sel.place = x.id;
                     render();
                 }
             },
-            x.image ? el('img', {src: `${x.image}?width=120`, alt: '', loading: 'lazy'}) : '', placeLabel(x)))),
+            x.image ? el('img', {src: `${x.image}?width=120`, alt: '', loading: 'lazy'}) : '', el('span', {}, placeLabel(x))))),
         section(T('steps.budget'), ...budgetKids),
         el('section', {}, el('h2', {}, T('steps.tree')),
-            el('input', {
+            ...(cfg.trees.length >= (cfg.searchMinTrees ?? 0) ? [el('input', {
                 id: 'search', type: 'search', placeholder: T('searchTree'), 'aria-label': T('searchTree'), value: sel.search,
                 oninput: e => {
                     sel.search = e.target.value;
                     renderTrees();
                 }
-            }),
+            })] : []),
             ...(sel.place ? [filterBar()] : []),
             el('div', {id: 'trees', class: 'trees'})),
         ...(cfg.customText?.enabled ? [el('section', {},
@@ -216,7 +222,7 @@ function renderTrees() {
         const why = treeReason(x), info = treeInfo(x);
         const chip = k => el('span', {class: `chip chip-${k}`}, T('treeStatus.' + k));
         return el('button', {
-                class: isPremium(x) ? 'tree premium' : 'tree', 'aria-pressed': sel.tree === x.id, disabled: !!why, title: why ?? '',
+                class: isPremium(x) ? 'tree premium' : 'tree', 'aria-pressed': sel.tree === x.id, disabled: !!why, 'data-reason': why,
                 onclick: () => {
                     setTree(x.id);
                     render();
@@ -313,6 +319,8 @@ function resetForm(to) {
 
 // The target address is stored base64-encoded in the config (hides it from simple scrapers; this is obfuscation, not secrecy)
 const emailTo = () => atob(cfg.email.toEncoded);
+// FormSubmit endpoint id: config.email.formsubmitId (random id given by FormSubmit, hides the address) if set, otherwise the address itself
+const formSubmitTarget = () => cfg.email.formsubmitId || emailTo();
 
 // FormSubmit is off by default: it is used only when config.email.formsubmit is true (missing or false means off)
 const useFormSubmit = () => cfg.email.formsubmit === true;
@@ -362,7 +370,7 @@ async function sendMail(place, tree) {
     renderThanks();
     showView('thanks');
     try {
-        const r = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(emailTo())}`, {
+        const r = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(formSubmitTarget())}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json', Accept: 'application/json'},
             // FormSubmit has no sender-name option: the label goes in the table as a first row
@@ -482,6 +490,7 @@ loadJson('assets/config.json').then(async c => {
     showHeroImage(c.home?.image, catalog);
     setHeaderHeight();
     c.premiumAmounts = c.trees.premiumAmounts;
+    c.searchMinTrees = c.trees.searchMinTrees;
     c.freePriceTrees = c.trees.freePriceTrees; // c.trees is replaced by the tree list just below
     c.trees = catalog.filter(t => t.available === true && (!c.trees.offerTypes || c.trees.offerTypes.includes(t.type)))
         .map(t => ({...c.trees.byType?.[t.type], ...c.trees.byId?.[t.id], id: t.id, label: t.name, image: t.image, latin: t.latin, premium: t.premium === true}));
