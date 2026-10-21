@@ -58,6 +58,8 @@
   "trees": {
     "source": "assets/data/trees.json",
     "searchMinTrees": 30,
+    "defaultStatusFilter": "all",
+    "lastIds": [],
     "offerTypes": [
       "fruitier",
       "ornement"
@@ -118,15 +120,22 @@
         "button": "GO!"
       },
       "back": "← Accueil",
+      "stepPrev": "Étape précédente",
+      "stepNext": "Étape suivante",
+      "stepOk": "OK",
+      "stepper": {
+        "home": "Accueil",
+        "place": "Lieu",
+        "budget": "Budget",
+        "tree": "Arbre",
+        "message": "Message",
+        "contact": "Contact",
+        "summary": "Récap"
+      },
       "themeLabel": "Changer de thème",
       "langLabel": "Langue",
       "steps": {
-        "place": "1. Où planter ?",
-        "budget": "2. Budget",
-        "tree": "3. Quel arbre ?",
-        "message": "4. Message",
-        "contact": "5. Vos coordonnées",
-        "messageSubtitle": "(qui sera affiché sur l'arbre)"
+        "messageSubtitle": "(qui sera gravé sur une plaque apposée sur l'arbre)"
       },
       "messageLabel": "Ligne 3 : un message pour la personne qui recevra l'arbre",
       "amountLabel": "Montant (€)",
@@ -144,12 +153,10 @@
         "freePrice": "Indisponible pour un prix libre"
       },
       "summary": {
-        "title": "Récapitulatif",
-        "empty": "Complétez les champs ci-dessus pour valider.",
+        "empty": "Complétez toutes les étapes pour valider.",
         "labels": {
           "place": "Lieu",
-          "budget": "Budget",
-          "amount": "Montant",
+          "amount": "Budget",
           "tree": "Arbre",
           "message": "Message",
           "name": "Nom",
@@ -215,14 +222,21 @@
         "button": "GO!"
       },
       "back": "← Home",
+      "stepPrev": "Previous step",
+      "stepNext": "Next step",
+      "stepOk": "OK",
+      "stepper": {
+        "home": "Home",
+        "place": "Place",
+        "budget": "Budget",
+        "tree": "Tree",
+        "message": "Message",
+        "contact": "Contact",
+        "summary": "Summary"
+      },
       "themeLabel": "Toggle theme",
       "langLabel": "Language",
       "steps": {
-        "place": "1. Where to plant?",
-        "budget": "2. Budget",
-        "tree": "3. Which tree?",
-        "message": "4. Message",
-        "contact": "5. Your details",
         "messageSubtitle": "(which will be displayed on the tree)"
       },
       "messageLabel": "Line 3: a message for the person who will receive the tree",
@@ -241,12 +255,10 @@
         "freePrice": "Not available for a free price"
       },
       "summary": {
-        "title": "Summary",
-        "empty": "Fill in the fields above to confirm.",
+        "empty": "Fill in all the steps to confirm.",
         "labels": {
           "place": "Place",
-          "budget": "Budget",
-          "amount": "Amount",
+          "amount": "Budget",
           "tree": "Tree",
           "message": "Message",
           "name": "Name",

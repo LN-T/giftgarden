@@ -1,524 +1,562 @@
-// Trees come from the catalog file (config.trees.source). Only trees with "available": true are shown (missing = false).
-// config.trees.offerTypes further limits which types are offered.
-// config.trees.searchMinTrees: the search bar is hidden when fewer trees than this are offered (missing = always shown).
-// Availability rules, set in config.trees.byType / byId (keyed by the tree's integer id in the catalog; byId wins; all optional, missing = no restriction):
-//   byPlace: { <city id>: { status: "unavailable" | "available" | "sponsored" (default available), sponsor: name shown when sponsored, premium: bool } }, note: key of texts.<lang>.treeNotes shown on the card, budgets: [budget ids], minAmount, maxAmount (effective amount in €)
 const app = document.getElementById('app');
-const sel = {place: null, budget: null, amount: null, tree: null, text: '', search: '', name: '', phone: '', line1: '', line2: '', pre: ['', ''], fStatus: 'all'};
-let cfg;
+const selection = {step: 0, place: null, budget: null, amount: null, tree: null, text: '', search: '', name: '', phone: '', line1: '', line2: '', prefilledLines: ['', ''], statusFilter: 'all'};
+let config;
 
-// All texts live in config.texts.<lang>; {name} placeholders are filled by T(). Missing keys fall back to the default language.
-let lang = 'fr';
-const T = (path, vars) => {
-    const get = l => path.split('.').reduce((o, k) => o?.[k], cfg.texts[l]);
-    const s = get(lang) ?? get(cfg.languages.default) ?? path;
-    return vars ? s.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '') : s;
+let language = 'fr';
+const translate = (path, variables) => {
+    const lookup = languageCode => path.split('.').reduce((node, key) => node?.[key], config.texts[languageCode]);
+    const text = lookup(language) ?? lookup(config.languages.default) ?? path;
+    return variables ? text.replace(/\{(\w+)\}/g, (match, name) => variables[name] ?? '') : text;
 };
-// Contact fields (config.contact.<field>.required); the phone is only format-checked when filled in
-const validPhone = s => /^\+?[\d\s().-]{6,25}$/.test(s) && s.replace(/\D/g, '').length >= 6;
-const contactOk = () => (!cfg.contact?.name?.required || sel.name.trim() !== '')
-    && (sel.phone.trim() === '' ? !cfg.contact?.phone?.required : validPhone(sel.phone.trim()));
-// The message has 3 lines: French name and Latin name in parentheses of the chosen tree (prefilled, editable) and the visitor's own text.
-// Choosing another tree swaps the prefilled lines unless the visitor edited them.
-function setTree(id) {
-    sel.tree = id;
-    const tree = cfg.trees.find(x => x.id === id);
-    const next = [tree?.label ?? '', tree?.latin ? `(${tree.latin})` : ''];
-    ['line1', 'line2'].forEach((k, i) => {
-        if (sel[k] === sel.pre[i]) sel[k] = next[i];
+
+const isValidPhoneNumber = phoneNumber => /^\+?[\d\s().-]{6,25}$/.test(phoneNumber) && phoneNumber.replace(/\D/g, '').length >= 6;
+const areContactFieldsValid = () => (!config.contact?.name?.required || selection.name.trim() !== '')
+    && (selection.phone.trim() === '' ? !config.contact?.phone?.required : isValidPhoneNumber(selection.phone.trim()));
+
+function chooseTree(treeId) {
+    selection.tree = treeId;
+    const tree = config.trees.find(candidateTree => candidateTree.id === treeId);
+    const lineFromTree = [tree?.label ?? '', tree?.latin ? `(${tree.latin})` : ''];
+    ['line1', 'line2'].forEach((lineKey, lineIndex) => {
+        const visitorDidNotEditLine = selection[lineKey] === selection.prefilledLines[lineIndex];
+        if (visitorDidNotEditLine) selection[lineKey] = lineFromTree[lineIndex];
     });
-    sel.pre = next;
+    selection.prefilledLines = lineFromTree;
 }
 
-const messageText = () => [sel.line1, sel.line2, sel.text].map(s => s.trim()).filter(Boolean).join('\n');
-// Place name: texts.<lang>.places.<city id> if given (translation), otherwise the city name from the cities file
-const placeLabel = p => cfg.texts[lang]?.places?.[p.id] ?? p.label;
-const money = n => T('money', {n});
+const fullMessageText = () => [selection.line1, selection.line2, selection.text].map(line => line.trim()).filter(Boolean).join('\n');
+const placeDisplayName = place => config.texts[language]?.places?.[place.id] ?? place.label;
+const formatMoney = amount => translate('money', {n: amount});
 
-// Premium: the tree's own flag from the catalog, or a per-place premium flag in config byPlace.
-// Premium trees can only be chosen for the amounts listed in config.trees.premiumAmounts (any amount when missing)
-const isPremium = tree => tree.premium || (sel.place && tree.byPlace?.[sel.place]?.premium === true);
-// Availability of a tree in the chosen place (from config byPlace; default: available)
-const treeInfo = tree => {
-    const pr = (sel.place && tree.byPlace?.[sel.place]) || {};
-    return {status: pr.status ?? 'available', sponsor: pr.sponsor ?? null};
+const isPremiumTree = tree => tree.premium || (selection.place && tree.byPlace?.[selection.place]?.premium === true);
+const treeAvailabilityInSelectedPlace = tree => {
+    const placeRule = (selection.place && tree.byPlace?.[selection.place]) || {};
+    return {status: placeRule.status ?? 'available', sponsor: placeRule.sponsor ?? null};
 };
-// Once a tree is chosen, the places where it can't be had (unavailable or sponsored there) are disabled in the place list
-const placeBlocked = placeId => {
-    const st = cfg.trees.find(x => x.id === sel.tree)?.byPlace?.[placeId]?.status;
-    return st === 'unavailable' || st === 'sponsored';
-};
-const treeReason = tree => {
-    const p = sel.place, b = cfg.budgets.find(x => x.id === sel.budget), a = sel.amount;
-    const info = treeInfo(tree);
-    if (info.status === 'unavailable') return T('reasons.place');
-    if (info.status === 'sponsored') return T('reasons.sponsored');
-    if (b && tree.budgets && !tree.budgets.includes(b.id)) return T('reasons.budget');
-    // With a free price (prix libre), only the trees listed in config.trees.freePriceTrees are available
-    if (b?.free && cfg.freePriceTrees && !cfg.freePriceTrees.includes(tree.id)) return T('reasons.freePrice');
-    const only = cfg.premiumAmounts;
-    if (only && a != null && isPremium(tree) && !only.includes(a)) return T('reasons.premiumAmount', {n: only.map(money).join(' / ')});
-    if (a != null && tree.minAmount != null && a < tree.minAmount) return T('reasons.from', {n: money(tree.minAmount)});
-    if (a != null && tree.maxAmount != null && a > tree.maxAmount) return T('reasons.upto', {n: money(tree.maxAmount)});
+const reasonTreeCannotBeChosen = tree => {
+    const budget = config.budgets.find(candidateBudget => candidateBudget.id === selection.budget), amount = selection.amount;
+    const availability = treeAvailabilityInSelectedPlace(tree);
+    if (availability.status === 'unavailable') return translate('reasons.place');
+    if (availability.status === 'sponsored') return translate('reasons.sponsored');
+    if (budget && tree.budgets && !tree.budgets.includes(budget.id)) return translate('reasons.budget');
+    const isFreePriceWithTreeNotAllowedForFreePrice = budget?.free && config.freePriceTrees && !config.freePriceTrees.includes(tree.id);
+    if (isFreePriceWithTreeNotAllowedForFreePrice) return translate('reasons.freePrice');
+    const amountsAllowedForPremiumTrees = config.premiumAmounts;
+    if (amountsAllowedForPremiumTrees && amount != null && isPremiumTree(tree) && !amountsAllowedForPremiumTrees.includes(amount)) return translate('reasons.premiumAmount', {n: amountsAllowedForPremiumTrees.map(formatMoney).join(' / ')});
+    if (amount != null && tree.minAmount != null && amount < tree.minAmount) return translate('reasons.from', {n: formatMoney(tree.minAmount)});
+    if (amount != null && tree.maxAmount != null && amount > tree.maxAmount) return translate('reasons.upto', {n: formatMoney(tree.maxAmount)});
     return null;
 };
 
-const el = (tag, attrs = {}, ...kids) => {
-    const e = document.createElement(tag);
-    for (const [k, v] of Object.entries(attrs)) {
-        if (k === 'class') e.className = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else if (v !== false && v != null) e.setAttribute(k, v);
+const buildElement = (tag, attributes = {}, ...children) => {
+    const element = document.createElement(tag);
+    for (const [name, value] of Object.entries(attributes)) {
+        if (name === 'class') element.className = value; else if (name.startsWith('on')) element.addEventListener(name.slice(2), value); else if (value !== false && value != null) element.setAttribute(name, value);
     }
-    e.append(...kids);
-    return e;
+    element.append(...children);
+    return element;
 };
 
-const choice = (label, pressed, onclick, disabled, note) =>
-    el('button', {class: 'choice', 'aria-pressed': pressed, disabled, onclick},
-        label, note ? el('small', {}, note) : '');
+const buildChoiceButton = (label, pressed, onclick, disabled, note) =>
+    buildElement('button', {class: 'choice', 'aria-pressed': pressed, disabled, onclick},
+        label, note ? buildElement('small', {}, note) : '');
+
+const formStepIds = () => ['place', 'budget', 'tree', ...(config.customText?.enabled ? ['message'] : []), 'contact', 'summary'];
+const indexOfStepAfter = stepId => formStepIds().indexOf(stepId) + 1;
+const isStepDone = stepId => ({place: !!selection.place, budget: !!selection.budget && selection.amount != null, tree: !!selection.tree, message: !isVisitorTextTooLong(), contact: areContactFieldsValid()})[stepId] ?? true;
+let slideDirectionOfNewStep = null;
+function goToStep(stepIndex) {
+    slideDirectionOfNewStep = stepIndex >= selection.step ? 'next' : 'prev';
+    selection.step = stepIndex;
+    render();
+    scrollTo({top: 0});
+}
+
+function renderStepper() {
+    const stepperStepIds = ['home', ...formStepIds()], currentStepperIndex = currentView === 'home' ? 0 : selection.step + 1;
+    const stepper = document.getElementById('stepper');
+    stepper.hidden = currentView === 'thanks';
+    stepper.classList.toggle('is-invisible', currentView === 'home');
+    stepper.replaceChildren(...stepperStepIds.flatMap((stepId, stepIndex) => [
+        ...(stepIndex ? [buildElement('div', {class: stepIndex <= currentStepperIndex ? 'stepper-line is-done' : 'stepper-line'})] : []),
+        buildElement('button', {
+            class: `stepper-step ${stepIndex < currentStepperIndex ? 'is-done' : stepIndex === currentStepperIndex ? 'is-current' : 'is-pending'}`, disabled: stepIndex >= currentStepperIndex,
+            'aria-current': stepIndex === currentStepperIndex ? 'step' : null,
+            onclick: () => (stepIndex === 0 ? showView('home') : goToStep(stepIndex - 1))
+        }, buildElement('span', {class: 'stepper-circle'}, stepIndex < currentStepperIndex ? '✓' : String(stepIndex)), buildElement('span', {class: 'stepper-label'}, translate('stepper.' + stepId)))
+    ]));
+}
+
+function updateStepNavigation() {
+    if (!config) return;
+    const stepIds = formStepIds(), isHome = currentView === 'home';
+    document.getElementById('stepnav').hidden = currentView === 'thanks';
+    renderStepper();
+    document.getElementById('step-prev').disabled = isHome;
+    const nextButton = document.getElementById('step-next');
+    nextButton.hidden = !isHome && selection.step >= stepIds.length - 1;
+    nextButton.disabled = !isHome && !isStepDone(stepIds[selection.step]);
+}
+
+function dropChosenTreeIfNoLongerAvailable() {
+    const chosenTree = config.trees.find(candidateTree => candidateTree.id === selection.tree);
+    if (chosenTree && reasonTreeCannotBeChosen(chosenTree)) chooseTree(null);
+}
 
 function render() {
-    const b = cfg.budgets.find(x => x.id === sel.budget);
-    // Drop a tree choice that is no longer available after a place/budget change
-    const cur = cfg.trees.find(x => x.id === sel.tree);
-    if (cur && treeReason(cur)) setTree(null);
+    dropChosenTreeIfNoLongerAvailable();
+    const budget = config.budgets.find(candidateBudget => candidateBudget.id === selection.budget);
 
-    const ready = sel.place && sel.budget && sel.amount != null && sel.tree;
-    const section = (title, ...kids) => el('section', {}, el('h2', {}, title), el('div', {class: 'choices'}, ...kids));
-    const focusId = document.activeElement?.id;
+    const stepIds = formStepIds();
+    selection.step = Math.min(selection.step, stepIds.length - 1);
+    const currentStepId = stepIds[selection.step];
+    app.dataset.step = currentStepId;
+    const buildSection = (sectionStepId, title, ...children) => buildElement('section', {'data-step': sectionStepId, hidden: currentStepId !== sectionStepId}, buildElement('h2', {}, title), buildElement('div', {class: 'choices'}, ...children));
+    const idOfFocusedElement = document.activeElement?.id;
 
-    const budgetKids = cfg.budgets.map(x => choice(T('budgets.' + x.id), sel.budget === x.id, () => {
-        sel.budget = x.id;
-        sel.amount = x.free ? null : x.amount;
-        render();
+    const budgetChoices = config.budgets.map(budgetOption => buildChoiceButton(translate('budgets.' + budgetOption.id), selection.budget === budgetOption.id, () => {
+        selection.budget = budgetOption.id;
+        selection.amount = budgetOption.free ? null : budgetOption.amount;
+        if (budgetOption.free) render(); else goToStep(indexOfStepAfter('budget'));
     }));
-    if (b?.free) {
-        budgetKids.push(el('label', {class: 'amount'}, T('amountLabel') + ' ',
-            el('input', {
-                id: 'amount', type: 'number', min: b.min ?? 1, step: 1, value: sel.amount ?? '', placeholder: T('amountMin', {n: b.min ?? 1}),
-                oninput: e => {
-                    const v = Number(e.target.value);
-                    sel.amount = v >= (b.min ?? 1) ? v : null;
+    if (budget?.free) {
+        budgetChoices.push(buildElement('label', {class: 'amount'}, translate('amountLabel') + ' ',
+            buildElement('input', {
+                id: 'amount', type: 'number', min: budget.min ?? 1, step: 1, value: selection.amount ?? '', placeholder: translate('amountMin', {n: budget.min ?? 1}),
+                oninput: event => {
+                    const typedAmount = Number(event.target.value);
+                    selection.amount = typedAmount >= (budget.min ?? 1) ? typedAmount : null;
                     render();
+                },
+                onkeydown: event => {
+                    if (event.key === 'Enter' && selection.amount != null) goToStep(indexOfStepAfter('budget'));
                 }
             })));
     }
 
     app.replaceChildren(
-        section(T('steps.place'), ...[...cfg.places].sort((a, b) => placeLabel(a).localeCompare(placeLabel(b), lang)).map(x => el('button', {
-                class: 'choice place', 'aria-pressed': sel.place === x.id, disabled: placeBlocked(x.id), 'data-reason': placeBlocked(x.id) ? T('reasons.place') : null, onclick: () => {
-                    sel.place = x.id;
-                    render();
+        buildSection('place', translate('stepper.place'), ...[...config.places].sort((leftPlace, rightPlace) => placeDisplayName(leftPlace).localeCompare(placeDisplayName(rightPlace), language)).map(place => buildElement('button', {
+                class: 'choice place', 'aria-pressed': selection.place === place.id, onclick: () => {
+                    selection.place = place.id;
+                    goToStep(indexOfStepAfter('place'));
                 }
             },
-            x.image ? el('img', {src: `${x.image}?width=120`, alt: '', loading: 'lazy'}) : '', el('span', {}, placeLabel(x))))),
-        section(T('steps.budget'), ...budgetKids),
-        el('section', {}, el('h2', {}, T('steps.tree')),
-            ...(cfg.trees.length >= (cfg.searchMinTrees ?? 0) ? [el('input', {
-                id: 'search', type: 'search', placeholder: T('searchTree'), 'aria-label': T('searchTree'), value: sel.search,
-                oninput: e => {
-                    sel.search = e.target.value;
+            place.image ? buildElement('img', {src: `${place.image}?width=120`, alt: '', loading: 'lazy'}) : '', placeDisplayName(place)))),
+        buildSection('budget', translate('stepper.budget'), ...budgetChoices),
+        buildElement('section', {'data-step': 'tree', hidden: currentStepId !== 'tree'}, buildElement('h2', {}, translate('stepper.tree')),
+            ...(config.trees.length >= (config.searchMinTrees ?? 0) ? [buildElement('input', {
+                id: 'search', type: 'search', placeholder: translate('searchTree'), 'aria-label': translate('searchTree'), value: selection.search,
+                oninput: event => {
+                    selection.search = event.target.value;
                     renderTrees();
                 }
             })] : []),
-            ...(sel.place ? [filterBar()] : []),
-            el('div', {id: 'trees', class: 'trees'})),
-        ...(cfg.customText?.enabled ? [el('section', {},
-            el('h2', {}, T('steps.message')),
-            el('p', {class: 'step-sub'}, T('steps.messageSubtitle')),
-            el('div', {class: 'stack'},
-                el('label', {}, T('messageLine1Label'),
-                    el('input', {
-                        id: 'line1', type: 'text', value: sel.line1, oninput: e => {
-                            sel.line1 = e.target.value;
+            ...(selection.place ? [buildAvailabilityFilterBar()] : []),
+            buildElement('div', {id: 'trees', class: 'trees'})),
+        ...(config.customText?.enabled ? [buildElement('section', {'data-step': 'message', hidden: currentStepId !== 'message'},
+            buildElement('h2', {}, translate('stepper.message')),
+            buildElement('p', {class: 'step-sub'}, translate('steps.messageSubtitle')),
+            buildElement('div', {class: 'stack'},
+                buildElement('label', {}, translate('messageLine1Label'),
+                    buildElement('input', {
+                        id: 'line1', type: 'text', maxlength: 100, value: selection.line1, oninput: event => {
+                            selection.line1 = event.target.value;
                             renderSummary();
                         }
                     })),
-                el('label', {}, T('messageLine2Label'),
-                    el('input', {
-                        id: 'line2', type: 'text', class: 'latin-input', value: sel.line2, oninput: e => {
-                            sel.line2 = e.target.value;
+                buildElement('label', {}, translate('messageLine2Label'),
+                    buildElement('input', {
+                        id: 'line2', type: 'text', class: 'latin-input', maxlength: 100, value: selection.line2, oninput: event => {
+                            selection.line2 = event.target.value;
                             renderSummary();
                         }
                     })),
-                el('label', {}, T('messageLabel'),
-                    el('small', {class: 'example'}, T('messageExample')),
-                    el('textarea', {
+                buildElement('label', {}, translate('messageLabel'),
+                    buildElement('small', {class: 'example'}, translate('messageExample')),
+                    buildElement('textarea', {
                         id: 'text', rows: 2,
-                        oninput: e => {
-                            sel.text = e.target.value;
-                            updateCount();
+                        oninput: event => {
+                            selection.text = event.target.value;
+                            updateMessageCounter();
                             renderSummary();
                         }
-                    }, sel.text),
-                    el('small', {id: 'textcount', class: 'count'}),
-                    el('small', {id: 'texterror', class: 'error', role: 'alert', hidden: true}))))] : []),
-        el('section', {}, el('h2', {}, T('steps.contact')),
-            el('div', {class: 'fields'},
-                el('label', {}, T('nameLabel'),
-                    el('input', {
-                        id: 'name', type: 'text', autocomplete: 'name', placeholder: T('namePlaceholder'), value: sel.name, oninput: e => {
-                            sel.name = e.target.value;
+                    }, selection.text),
+                    buildElement('small', {id: 'textcount', class: 'count'}),
+                    buildElement('small', {id: 'texterror', class: 'error', role: 'alert', hidden: true})),
+                buildElement('button', {id: 'message-ok', class: 'choice ok', onclick: () => goToStep(indexOfStepAfter('message'))}, translate('stepOk'))))] : []),
+        buildElement('section', {'data-step': 'contact', hidden: currentStepId !== 'contact'}, buildElement('h2', {}, translate('stepper.contact')),
+            buildElement('div', {class: 'fields'},
+                buildElement('label', {}, translate('nameLabel'),
+                    buildElement('input', {
+                        id: 'name', type: 'text', maxlength: 100, autocomplete: 'name', placeholder: translate('namePlaceholder'), value: selection.name, oninput: event => {
+                            selection.name = event.target.value;
                             renderSummary();
                         }
                     })),
-                el('label', {}, T('phoneLabel'),
-                    el('input', {
-                        id: 'phone', type: 'tel', autocomplete: 'tel', placeholder: T('phonePlaceholder'), value: sel.phone,
-                        oninput: e => {
-                            sel.phone = e.target.value;
-                            document.getElementById('phone-hint').hidden = sel.phone.trim() === '' || validPhone(sel.phone.trim());
+                buildElement('label', {}, translate('phoneLabel'),
+                    buildElement('input', {
+                        id: 'phone', type: 'tel', autocomplete: 'tel', placeholder: translate('phonePlaceholder'), value: selection.phone,
+                        oninput: event => {
+                            selection.phone = event.target.value;
+                            document.getElementById('phone-hint').hidden = selection.phone.trim() === '' || isValidPhoneNumber(selection.phone.trim());
                             renderSummary();
                         }
                     }),
-                    el('small', {id: 'phone-hint', hidden: sel.phone.trim() === '' || validPhone(sel.phone.trim())}, T('phoneInvalid'))))),
-        el('section', {id: 'summary'})
+                    buildElement('small', {id: 'phone-hint', hidden: selection.phone.trim() === '' || isValidPhoneNumber(selection.phone.trim())}, translate('phoneInvalid')))),
+            buildElement('button', {id: 'contact-ok', class: 'choice ok', onclick: () => goToStep(indexOfStepAfter('contact'))}, translate('stepOk'))),
+        buildElement('section', {id: 'summary', hidden: currentStepId !== 'summary'})
     );
     renderTrees();
-    if (cfg.customText?.enabled) updateCount();
+    if (config.customText?.enabled) updateMessageCounter();
     renderSummary();
-    const f = focusId && document.getElementById(focusId);
-    if (f) {
-        f.focus();
-        if (['text', 'search', 'tel', 'textarea'].includes(f.type)) f.setSelectionRange(f.value.length, f.value.length);
+    updateStepNavigation();
+    if (slideDirectionOfNewStep) {
+        document.querySelectorAll('#app > section:not([hidden])').forEach(section => section.classList.add('slide-' + slideDirectionOfNewStep));
+        slideDirectionOfNewStep = null;
+    }
+    const focusedElement = idOfFocusedElement && document.getElementById(idOfFocusedElement);
+    if (focusedElement) {
+        focusedElement.focus();
+        if (['text', 'search', 'tel', 'textarea'].includes(focusedElement.type)) focusedElement.setSelectionRange(focusedElement.value.length, focusedElement.value.length);
     }
 }
 
-// The message may not exceed config.customText.maxLength (no limit when missing). Typing past it is allowed so that an
-// error can be shown, but the form cannot be sent until the message is shortened.
-// The limit applies to line 3 only (the visitor's own text)
-const messageTooLong = () => cfg.customText?.enabled && cfg.customText.maxLength > 0 && sel.text.length > cfg.customText.maxLength;
-const updateCount = () => {
-    const max = cfg.customText?.maxLength;
-    const count = document.getElementById('textcount'), error = document.getElementById('texterror');
-    count.textContent = max ? `${sel.text.length} / ${max}` : '';
-    count.classList.toggle('over', !!messageTooLong());
-    error.textContent = messageTooLong() ? T('messageTooLong', {max}) : '';
-    error.hidden = !messageTooLong();
+const isVisitorTextTooLong = () => config.customText?.enabled && config.customText.maxLength > 0 && selection.text.length > config.customText.maxLength;
+const updateMessageCounter = () => {
+    const maxLength = config.customText?.maxLength;
+    const counter = document.getElementById('textcount'), errorMessage = document.getElementById('texterror');
+    counter.textContent = maxLength ? `${selection.text.length} / ${maxLength}` : '';
+    counter.classList.toggle('over', !!isVisitorTextTooLong());
+    errorMessage.textContent = isVisitorTextTooLong() ? translate('messageTooLong', {max: maxLength}) : '';
+    errorMessage.hidden = !isVisitorTextTooLong();
+    document.getElementById('message-ok').disabled = !!isVisitorTextTooLong();
 };
 
-// Filter of the tree list by availability (only once a place is chosen, as availability depends on the place)
-function filterBar() {
-    const group = (title, key, values) => el('div', {class: 'filter-group'}, el('span', {}, title),
-        ...values.map(v => el('button', {
-            class: 'chip-btn', 'aria-pressed': sel[key] === v, onclick: () => {
-                sel[key] = v;
+function buildAvailabilityFilterBar() {
+    const buildFilterGroup = (title, filterKey, filterValues) => buildElement('div', {class: 'filter-group'}, buildElement('span', {}, title),
+        ...filterValues.map(filterValue => buildElement('button', {
+            class: 'chip-btn', 'aria-pressed': selection[filterKey] === filterValue, onclick: () => {
+                selection[filterKey] = filterValue;
                 render();
             }
-        }, T('treeStatus.' + v))));
-    return el('div', {class: 'filters'},
-        group(T('treeStatus.availability'), 'fStatus', ['all', 'available', 'sponsored', 'unavailable']));
+        }, translate('treeStatus.' + filterValue))));
+    return buildElement('div', {class: 'filters'},
+        buildFilterGroup(translate('treeStatus.availability'), 'statusFilter', ['all', 'available', 'sponsored', 'unavailable']));
 }
 
-const norm = s => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
+const removeAccentsAndLowerCase = text => text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 
 function renderTrees() {
-    const q = norm(sel.search.trim());
-    const matches = x => {
-        if (!sel.place) return true;
-        return sel.fStatus === 'all' || sel.fStatus === treeInfo(x).status;
+    const normalizedQuery = removeAccentsAndLowerCase(selection.search.trim());
+    const matchesStatusFilter = tree => {
+        if (!selection.place) return true;
+        return selection.statusFilter === 'all' || selection.statusFilter === treeAvailabilityInSelectedPlace(tree).status;
     };
-    const list = cfg.trees.filter(x => (!q || norm(x.label).includes(q)) && matches(x));
-    const card = x => {
-        const why = treeReason(x), info = treeInfo(x);
-        const chip = k => el('span', {class: `chip chip-${k}`}, T('treeStatus.' + k));
-        return el('button', {
-                class: isPremium(x) ? 'tree premium' : 'tree', 'aria-pressed': sel.tree === x.id, disabled: !!why, 'data-reason': why,
+    const visibleTrees = config.trees.filter(tree => (!normalizedQuery || removeAccentsAndLowerCase(tree.label).includes(normalizedQuery)) && matchesStatusFilter(tree));
+    const buildTreeCard = tree => {
+        const unavailableReason = reasonTreeCannotBeChosen(tree), availability = treeAvailabilityInSelectedPlace(tree);
+        const buildStatusChip = status => buildElement('span', {class: `chip chip-${status}`}, translate('treeStatus.' + status));
+        return buildElement('button', {
+                class: isPremiumTree(tree) ? 'tree premium' : 'tree', 'aria-pressed': selection.tree === tree.id, disabled: !!unavailableReason, 'data-reason': unavailableReason,
                 onclick: () => {
-                    setTree(x.id);
-                    render();
+                    chooseTree(tree.id);
+                    goToStep(indexOfStepAfter('tree'));
                 }
             },
-            x.image ? el('img', {src: x.image, alt: '', loading: 'lazy'}) : el('div', {class: 'noimg'}, '🌳'),
-            ...(x.latin ? [el('em', {class: 'latin'}, x.latin)] : []), el('span', {}, x.label),
-            ...(sel.place ? [el('div', {class: 'chips'}, chip(info.status))] : []),
-            ...(x.note ? [el('small', {class: 'note'}, T('treeNotes.' + x.note))] : []),
-            ...(info.status === 'sponsored' && info.sponsor ? [el('small', {class: 'sponsor'}, T('treeStatus.sponsoredBy', {name: info.sponsor}))] : []),
-            why && info.status === 'available' ? el('small', {}, why) : '');
+            tree.image ? buildElement('img', {src: tree.image, alt: '', loading: 'lazy'}) : buildElement('div', {class: 'noimg'}, '🌳'),
+            ...(tree.latin ? [buildElement('em', {class: 'latin'}, tree.latin)] : []), buildElement('span', {}, tree.label),
+            ...(selection.place ? [buildElement('div', {class: 'chips'}, buildStatusChip(availability.status))] : []),
+            ...(tree.note ? [buildElement('small', {class: 'note'}, translate('treeNotes.' + tree.note))] : []),
+            ...(availability.status === 'sponsored' && availability.sponsor ? [buildElement('small', {class: 'sponsor'}, translate('treeStatus.sponsoredBy', {name: availability.sponsor}))] : []),
+            unavailableReason && availability.status === 'available' ? buildElement('small', {}, unavailableReason) : '');
     };
-    // Premium trees come last, after a separator (shown only when both groups are in the list)
-    const regular = list.filter(x => !isPremium(x)), premium = list.filter(isPremium);
-    document.getElementById('trees').replaceChildren(...(list.length
-        ? [...regular.map(card), ...(regular.length && premium.length ? [el('div', {class: 'tree-sep', role: 'separator'}, el('div', {class: 'tree-sep-text'}, el('span', {}, T('premiumTitle')), el('small', {}, T('premiumSubtitle'))))] : []), ...premium.map(card)]
-        : [el('p', {}, T('noTree'))]));
+    const positionInLastIds = tree => (config.lastTreeIds ?? []).indexOf(tree.id);
+    const sortTreesListedInLastIdsAfterOthers = (leftTree, rightTree) => (positionInLastIds(leftTree) === -1 ? -1 : positionInLastIds(leftTree)) - (positionInLastIds(rightTree) === -1 ? -1 : positionInLastIds(rightTree));
+    const regularTrees = visibleTrees.filter(tree => !isPremiumTree(tree)).sort(sortTreesListedInLastIdsAfterOthers), premiumTrees = visibleTrees.filter(isPremiumTree).sort(sortTreesListedInLastIdsAfterOthers);
+    const premiumSeparator = buildElement('div', {class: 'tree-sep', role: 'separator'}, buildElement('div', {class: 'tree-sep-text'}, buildElement('span', {}, translate('premiumTitle')), buildElement('small', {}, translate('premiumSubtitle'))));
+    document.getElementById('trees').replaceChildren(...(visibleTrees.length
+        ? [...regularTrees.map(buildTreeCard), ...(regularTrees.length && premiumTrees.length ? [premiumSeparator] : []), ...premiumTrees.map(buildTreeCard)]
+        : [buildElement('p', {}, translate('noTree'))]));
 }
 
-// Recap of every field of the form, as label / value rows ("—" while a field is empty)
-function summaryList() {
-    const place = cfg.places.find(x => x.id === sel.place), b = cfg.budgets.find(x => x.id === sel.budget), tree = cfg.trees.find(x => x.id === sel.tree);
+function buildSummaryList() {
+    const place = config.places.find(candidatePlace => candidatePlace.id === selection.place), tree = config.trees.find(candidateTree => candidateTree.id === selection.tree);
     const rows = [
-        ['place', place && placeLabel(place)],
-        ['budget', b && T('budgets.' + b.id)],
-        ['amount', sel.amount != null && money(sel.amount)],
+        ['place', place && placeDisplayName(place)],
+        ['amount', selection.amount != null && formatMoney(selection.amount)],
         ['tree', tree?.label],
-        ...(cfg.customText?.enabled ? [['message', messageText()]] : []),
-        ['name', sel.name.trim()],
-        ['phone', sel.phone.trim()],
+        ...(config.customText?.enabled ? [['message', fullMessageText()]] : []),
+        ['name', selection.name.trim()],
+        ['phone', selection.phone.trim()],
     ];
-    return el('dl', {class: 'recap'}, ...rows.flatMap(([k, v]) => [el('dt', {}, T('summary.labels.' + k)), el('dd', {}, v || '—')]));
+    return buildElement('dl', {class: 'recap'}, ...rows.flatMap(([labelKey, value]) => [buildElement('dt', {}, translate('summary.labels.' + labelKey)), buildElement('dd', {}, value || '—')]));
 }
 
-// Thank-you page, shown after the request has been sent
-// Card of the chosen tree (photo, Latin name, name), same look as in the list but not clickable
-function treeCardStatic(x) {
-    return el('div', {class: isPremium(x) ? 'tree tree-static premium' : 'tree tree-static'},
-        x.image ? el('img', {src: x.image, alt: ''}) : el('div', {class: 'noimg'}, '🌳'),
-        ...(x.latin ? [el('em', {class: 'latin'}, x.latin)] : []),
-        el('span', {}, x.label));
+function buildNonClickableTreeCard(tree) {
+    return buildElement('div', {class: isPremiumTree(tree) ? 'tree tree-static premium' : 'tree tree-static'},
+        tree.image ? buildElement('img', {src: tree.image, alt: ''}) : buildElement('div', {class: 'noimg'}, '🌳'),
+        ...(tree.latin ? [buildElement('em', {class: 'latin'}, tree.latin)] : []),
+        buildElement('span', {}, tree.label));
 }
 
-function renderThanks() {
-    // The mail-client block (warning + button) is shown at once, while FormSubmit is still awaited or once it failed, so that
-    // it is already there when the mail client opens; it disappears if the sending is confirmed. All the buttons are
-    // disabled until the mail client has been opened (they stay disabled while FormSubmit is awaited).
-    const mailBlock = Boolean(pendingMail) || thanksState === 'pending';
-    const locked = thanksState === 'pending' || (Boolean(pendingMail) && !mailOpened);
-    const chosen = cfg.trees.find(x => x.id === sel.tree);
+function renderThanksPage() {
+    const shouldShowMailClientNotice = Boolean(mailWaitingForMailClient) || thanksPageState === 'pending';
+    const areButtonsDisabled = thanksPageState === 'pending' || (Boolean(mailWaitingForMailClient) && !hasMailClientBeenOpened);
+    const chosenTree = config.trees.find(candidateTree => candidateTree.id === selection.tree);
     document.getElementById('thanks').replaceChildren(
-        el('div', {class: 'thanks-emoji', 'aria-hidden': 'true'}, '🌳'),
-        el('h2', {}, T('thanks.title', {name: sel.name.trim()})),
-        el('p', {}, T(thanksState === 'sent' ? 'thanks.text' : 'thanks.textMail')),
-        ...(chosen ? [treeCardStatic(chosen)] : []),
-        summaryList(),
-        ...(mailBlock ? [el('div', {class: 'warning', role: 'note'}, el('p', {}, T('mailWarning')))] : []),
-        // All the buttons of this page share the same size (see .thanks-actions in style.css)
-        el('div', {class: 'thanks-actions'},
-            ...(mailBlock
-                ? [el('button', {id: 'open-mail', class: 'choice', disabled: locked, onclick: () => pendingMail && openMailClient(pendingMail.fields, pendingMail.subject)}, T('thanks.openMail'))]
+        buildElement('div', {class: 'thanks-emoji', 'aria-hidden': 'true'}, '🌳'),
+        buildElement('h2', {}, translate('thanks.title', {name: selection.name.trim()})),
+        buildElement('p', {}, translate(thanksPageState === 'sent' ? 'thanks.text' : 'thanks.textMail')),
+        ...(chosenTree ? [buildNonClickableTreeCard(chosenTree)] : []),
+        buildSummaryList(),
+        ...(shouldShowMailClientNotice ? [buildElement('div', {class: 'warning', role: 'note'}, buildElement('p', {}, translate('mailWarning')))] : []),
+        buildElement('div', {class: 'thanks-actions'},
+            ...(shouldShowMailClientNotice
+                ? [buildElement('button', {id: 'open-mail', class: 'choice', disabled: areButtonsDisabled, onclick: () => mailWaitingForMailClient && openMailClient(mailWaitingForMailClient.fields, mailWaitingForMailClient.subject)}, translate('thanks.openMail'))]
                 : []),
-            el('button', {id: 'again', class: 'choice validate', disabled: locked, onclick: () => resetForm('form')}, T('thanks.again')),
-            el('button', {id: 'thanks-home', class: 'choice', disabled: locked, onclick: () => resetForm('home')}, T('thanks.home'))));
+            buildElement('button', {id: 'again', class: 'choice validate', disabled: areButtonsDisabled, onclick: () => resetForm('form')}, translate('thanks.again')),
+            buildElement('button', {id: 'thanks-home', class: 'choice', disabled: areButtonsDisabled, onclick: () => resetForm('home')}, translate('thanks.home'))));
 }
 
 function renderSummary() {
-    const s = document.getElementById('summary');
-    const place = cfg.places.find(x => x.id === sel.place), b = cfg.budgets.find(x => x.id === sel.budget), tree = cfg.trees.find(x => x.id === sel.tree);
-    const ready = place && b && sel.amount != null && tree && contactOk() && !messageTooLong();
-    s.replaceChildren(
-        el('h2', {}, T('summary.title')),
-        summaryList(),
-        ...(ready ? [] : [el('p', {class: 'hint'}, T('summary.empty'))]),
-        el('button', {id: 'validate', class: 'choice validate', disabled: !ready, onclick: () => sendMail(place, tree)}, T('validate')));
+    const summary = document.getElementById('summary');
+    const place = config.places.find(candidatePlace => candidatePlace.id === selection.place), budget = config.budgets.find(candidateBudget => candidateBudget.id === selection.budget), tree = config.trees.find(candidateTree => candidateTree.id === selection.tree);
+    const isReadyToSend = place && budget && selection.amount != null && tree && areContactFieldsValid() && !isVisitorTextTooLong();
+    summary.replaceChildren(
+        buildElement('h2', {}, translate('stepper.summary')),
+        buildSummaryList(),
+        ...(isReadyToSend ? [] : [buildElement('p', {class: 'hint'}, translate('summary.empty'))]),
+        buildElement('button', {id: 'validate', class: 'choice validate', disabled: !isReadyToSend, onclick: () => sendMail(place, tree)}, translate('validate')));
+    document.getElementById('contact-ok').disabled = !areContactFieldsValid();
+    updateStepNavigation();
 }
 
-// Starts over with an empty form after a request has been sent
-// Preselects config.defaultPlace (a city id from config.places), if any
-const applyDefaultPlace = () => {
-    if (cfg.defaultPlace != null && cfg.places.some(p => p.id === cfg.defaultPlace)) sel.place = cfg.defaultPlace;
+const preselectDefaultPlace = () => {
+    if (config.defaultPlace != null && config.places.some(place => place.id === config.defaultPlace)) selection.place = config.defaultPlace;
 };
 
-function resetForm(to) {
-    Object.assign(sel, {place: null, budget: null, amount: null, tree: null, text: '', search: '', name: '', phone: '', line1: '', line2: '', pre: ['', ''], fStatus: 'all'});
-    applyDefaultPlace();
-    clearTimeout(mailTimer);
-    pendingMail = null;
-    mailOpened = false;
-    thanksState = 'sent';
+const applyDefaultStatusFilter = () => {
+    selection.statusFilter = config.defaultStatusFilter ?? 'all';
+};
+
+function resetForm(targetView) {
+    Object.assign(selection, {step: 0, place: null, budget: null, amount: null, tree: null, text: '', search: '', name: '', phone: '', line1: '', line2: '', prefilledLines: ['', ''], statusFilter: 'all'});
+    preselectDefaultPlace();
+    applyDefaultStatusFilter();
+    clearTimeout(mailClientOpeningTimer);
+    mailWaitingForMailClient = null;
+    hasMailClientBeenOpened = false;
+    thanksPageState = 'sent';
     render();
-    showView(to);
+    showView(targetView);
 }
 
-// The target address is stored base64-encoded in the config (hides it from simple scrapers; this is obfuscation, not secrecy)
-const emailTo = () => atob(cfg.email.toEncoded);
-// FormSubmit endpoint id: config.email.formsubmitId (random id given by FormSubmit, hides the address) if set, otherwise the address itself
-const formSubmitTarget = () => cfg.email.formsubmitId || emailTo();
+const decodedRecipientEmail = () => atob(config.email.toEncoded);
+const formSubmitEndpointId = () => config.email.formsubmitId || decodedRecipientEmail();
+const isFormSubmitEnabled = () => config.email.formsubmit === true;
 
-// FormSubmit is off by default: it is used only when config.email.formsubmit is true (missing or false means off)
-const useFormSubmit = () => cfg.email.formsubmit === true;
-
-// Opens the visitor's mail client with the message prefilled
 function openMailClient(fields, subject) {
-    const body = Object.entries(fields).map(([k, v]) => `${k} : ${v}`).join('\n');
-    // Recipient shown as "label <address>" when email.label is set (percent-encoded, as RFC 6068 requires)
-    const recipient = cfg.email.label ? encodeURIComponent(`${cfg.email.label} <${emailTo()}>`) : emailTo();
-    mailOpened = true;
-    renderThanks();
+    const body = Object.entries(fields).map(([label, value]) => `${label} : ${value}`).join('\n');
+    const recipient = config.email.label ? encodeURIComponent(`${config.email.label} <${decodedRecipientEmail()}>`) : decodedRecipientEmail();
+    hasMailClientBeenOpened = true;
+    renderThanksPage();
     location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-// Mail-client mode (FormSubmit off, or FormSubmit failed): the thank-you page is shown first and the mail client opens
-// a few seconds later (config.email.mailClientDelaySeconds, 4 by default). The visitor can also open it with a button.
-let pendingMail = null; // {fields, subject} while the thank-you page is in mail-client mode
-let mailOpened = false; // true once the mail client has been opened: only then are the buttons of the thank-you page enabled
-let mailTimer = null;
-function showMailClientThanks(fields, subject) {
-    pendingMail = {fields, subject};
-    mailOpened = false;
-    thanksState = 'mail';
-    clearTimeout(mailTimer);
-    mailTimer = setTimeout(() => openMailClient(fields, subject), (cfg.email.mailClientDelaySeconds ?? 4) * 1000);
-    renderThanks();
+let mailWaitingForMailClient = null;
+let hasMailClientBeenOpened = false;
+let mailClientOpeningTimer = null;
+let thanksPageState = 'sent';
+function showThanksPageInMailClientMode(fields, subject) {
+    mailWaitingForMailClient = {fields, subject};
+    hasMailClientBeenOpened = false;
+    thanksPageState = 'mail';
+    clearTimeout(mailClientOpeningTimer);
+    mailClientOpeningTimer = setTimeout(() => openMailClient(fields, subject), (config.email.mailClientDelaySeconds ?? 4) * 1000);
+    renderThanksPage();
     showView('thanks');
 }
-
-// Sends through FormSubmit (no key; the address must be activated once via the mail FormSubmit sends).
-// If that fails, or if FormSubmit is switched off, the mail client is used instead (see showMailClientThanks).
-// State of the thank-you page: 'pending' (FormSubmit answer awaited, nothing is claimed yet), 'sent', or, with pendingMail set,
-// the mail-client mode. The visitor is sent to the thank-you page as soon as they validate.
-let thanksState = 'sent';
 
 async function sendMail(place, tree) {
-    const fields = {[T('mail.place')]: placeLabel(place), [T('mail.amount')]: money(sel.amount), [T('mail.tree')]: tree.label, [T('mail.name')]: sel.name.trim(), [T('mail.phone')]: sel.phone.trim()};
-    if (messageText()) fields[T('mail.message')] = messageText();
-    const subject = T('mail.subject');
-    if (!useFormSubmit()) {
-        showMailClientThanks(fields, subject);
+    const fields = {[translate('mail.place')]: placeDisplayName(place), [translate('mail.amount')]: formatMoney(selection.amount), [translate('mail.tree')]: tree.label, [translate('mail.name')]: selection.name.trim(), [translate('mail.phone')]: selection.phone.trim()};
+    if (fullMessageText()) fields[translate('mail.message')] = fullMessageText();
+    const subject = translate('mail.subject');
+    if (!isFormSubmitEnabled()) {
+        showThanksPageInMailClientMode(fields, subject);
         return;
     }
-    // Straight to the thank-you page; the answer of FormSubmit then confirms it, or switches the page to the mail client
-    thanksState = 'pending';
-    pendingMail = null;
-    renderThanks();
+    thanksPageState = 'pending';
+    mailWaitingForMailClient = null;
+    renderThanksPage();
     showView('thanks');
     try {
-        const r = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(formSubmitTarget())}`, {
+        const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(formSubmitEndpointId())}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-            // FormSubmit has no sender-name option: the label goes in the table as a first row
-            body: JSON.stringify({...(cfg.email.label ? {[T('mail.source')]: cfg.email.label} : {}), ...fields, _subject: subject, _template: 'table'}),
+            body: JSON.stringify({...(config.email.label ? {[translate('mail.source')]: config.email.label} : {}), ...fields, _subject: subject, _template: 'table', _honey: ''}),
         });
-        const data = await r.json();
-        if (!r.ok || String(data.success) !== 'true') throw new Error(data.message ?? r.status);
-        thanksState = 'sent';
-        renderThanks();
-    } catch (err) {
-        console.error(err);
-        showMailClientThanks(fields, subject);
+        const data = await response.json();
+        if (!response.ok || String(data.success) !== 'true') throw new Error(data.message ?? response.status);
+        thanksPageState = 'sent';
+        renderThanksPage();
+    } catch (error) {
+        console.error(error);
+        showThanksPageInMailClientMode(fields, subject);
     }
 }
 
-// Home picture: config.home.image if set, otherwise a random photo among the catalog trees flagged
-// can_be_used_by_homepage_giftgarden (no picture when none is flagged).
-// For the random one, a larger Wikimedia thumbnail (960px) is tried first, then the catalog's own size, then another tree.
-function showHeroImage(url, catalog) {
-    const hero = document.getElementById('hero');
-    const candidates = url ? [url] : catalog.filter(t => t.image && t.can_be_used_by_homepage_giftgarden === true).sort(() => Math.random() - 0.5).slice(0, 5)
-        .flatMap(t => [t.image.replace(/\/\d+px-/, '/960px-'), t.image]);
-    let i = 0;
-    const next = () => {
-        if (i >= candidates.length) {
-            hero.hidden = true;
+function showHeroImage(configuredImageUrl, catalog) {
+    const heroImage = document.getElementById('hero');
+    const imageCandidates = configuredImageUrl ? [configuredImageUrl] : catalog.filter(catalogTree => catalogTree.image && catalogTree.can_be_used_by_homepage_giftgarden === true).sort(() => Math.random() - 0.5).slice(0, 5)
+        .flatMap(catalogTree => [catalogTree.image.replace(/\/\d+px-/, '/960px-'), catalogTree.image]);
+    let candidateIndex = 0;
+    const showNextCandidate = () => {
+        if (candidateIndex >= imageCandidates.length) {
+            heroImage.hidden = true;
             return;
         }
-        hero.src = candidates[i++];
+        heroImage.src = imageCandidates[candidateIndex++];
     };
-    hero.onload = () => {
-        hero.hidden = false;
+    heroImage.onload = () => {
+        heroImage.hidden = false;
     };
-    hero.onerror = next;
-    next();
+    heroImage.onerror = showNextCandidate;
+    showNextCandidate();
 }
 
-// The home page fills the screen height under the header
-const setHeaderHeight = () => root.style.setProperty('--hh', document.querySelector('header').offsetHeight + 'px');
-addEventListener('resize', setHeaderHeight);
+const publishHeaderHeightToCss = () => rootElement.style.setProperty('--hh', document.querySelector('header').offsetHeight + 'px');
+addEventListener('resize', publishHeaderHeightToCss);
 
-// Applies the current language to every static text, then redraws the form
-function applyLang() {
-    document.documentElement.lang = lang;
-    document.title = T('siteTitle');
-    document.getElementById('site-title').textContent = `🌳 ${T('siteTitle')}`;
-    document.getElementById('site-subtitle').textContent = T('siteSubtitle');
-    document.getElementById('home-title').textContent = T('home.title');
-    document.getElementById('home-text').textContent = T('home.text');
-    document.getElementById('go').textContent = T('home.button');
-    document.getElementById('back').textContent = T('back');
-    const theme = document.getElementById('theme');
-    theme.title = theme.ariaLabel = T('themeLabel');
-    const btn = document.getElementById('lang-btn');
-    btn.ariaLabel = T('langLabel');
-    const cur = cfg.languages.available.find(l => l.code === lang);
-    btn.replaceChildren(...langLabel(cur));
-    document.querySelectorAll('#lang-menu [role=option]').forEach(o => {
-        o.ariaSelected = String(o.dataset.code === lang);
+function translateStaticTextsAndRedraw() {
+    document.documentElement.lang = language;
+    document.title = translate('siteTitle');
+    document.getElementById('site-title').textContent = `🌳 ${translate('siteTitle')}`;
+    document.getElementById('site-subtitle').textContent = translate('siteSubtitle');
+    document.getElementById('home-title').textContent = translate('home.title');
+    document.getElementById('home-text').textContent = translate('home.text');
+    document.getElementById('go').textContent = translate('home.button');
+    const backButton = document.getElementById('back');
+    backButton.textContent = '🏠';
+    backButton.title = backButton.ariaLabel = translate('back');
+    for (const [buttonId, textKey] of [['step-prev', 'stepPrev'], ['step-next', 'stepNext']]) {
+        const arrowButton = document.getElementById(buttonId);
+        arrowButton.title = arrowButton.ariaLabel = translate(textKey);
+    }
+    const themeButton = document.getElementById('theme');
+    themeButton.title = themeButton.ariaLabel = translate('themeLabel');
+    const languageButton = document.getElementById('lang-btn');
+    languageButton.ariaLabel = translate('langLabel');
+    const currentLanguage = config.languages.available.find(availableLanguage => availableLanguage.code === language);
+    languageButton.replaceChildren(...languageFlagAndLabel(currentLanguage));
+    document.querySelectorAll('#lang-menu [role=option]').forEach(option => {
+        option.ariaSelected = String(option.dataset.code === language);
     });
     render();
-    if (view === 'thanks') renderThanks();
+    if (currentView === 'thanks') renderThanksPage();
 }
 
-// Flag image (flagcdn) + label, used in the picker button and its menu
-const langLabel = l => [...(l.flag ? [el('img', {class: 'flag', src: `https://flagcdn.com/24x18/${l.flag}.png`, width: 24, height: 18, alt: ''})] : []), l.label];
+const languageFlagAndLabel = languageEntry => [...(languageEntry.flag ? [buildElement('img', {class: 'flag', src: `https://flagcdn.com/24x18/${languageEntry.flag}.png`, width: 24, height: 18, alt: ''})] : []), languageEntry.label];
 
-function setupLang() {
-    const {available, default: def} = cfg.languages;
-    let stored = null;
+function setupLanguagePicker() {
+    const {available, default: defaultLanguage} = config.languages;
+    let storedLanguage = null;
     try {
-        stored = localStorage.getItem('giftgarden-lang');
+        storedLanguage = localStorage.getItem('giftgarden-lang');
     } catch {
     }
-    lang = available.some(l => l.code === stored) ? stored : def;
-    const picker = document.getElementById('lang'), btn = document.getElementById('lang-btn'), menu = document.getElementById('lang-menu');
+    language = available.some(availableLanguage => availableLanguage.code === storedLanguage) ? storedLanguage : defaultLanguage;
+    const picker = document.getElementById('lang'), languageButton = document.getElementById('lang-btn'), menu = document.getElementById('lang-menu');
     picker.hidden = available.length < 2;
-    const toggle = open => {
-        menu.hidden = !open;
-        btn.ariaExpanded = String(open);
+    const setMenuOpen = isOpen => {
+        menu.hidden = !isOpen;
+        languageButton.ariaExpanded = String(isOpen);
     };
-    menu.replaceChildren(...available.map(l => el('li', {role: 'option', 'data-code': l.code},
-        el('button', {
+    menu.replaceChildren(...available.map(availableLanguage => buildElement('li', {role: 'option', 'data-code': availableLanguage.code},
+        buildElement('button', {
             onclick: () => {
-                lang = l.code;
+                language = availableLanguage.code;
                 try {
-                    localStorage.setItem('giftgarden-lang', lang);
+                    localStorage.setItem('giftgarden-lang', language);
                 } catch {
                 }
-                toggle(false);
-                applyLang();
+                setMenuOpen(false);
+                translateStaticTextsAndRedraw();
             }
-        }, ...langLabel(l)))));
-    btn.addEventListener('click', () => toggle(menu.hidden));
-    document.addEventListener('click', e => {
-        if (!picker.contains(e.target)) toggle(false);
+        }, ...languageFlagAndLabel(availableLanguage)))));
+    languageButton.addEventListener('click', () => setMenuOpen(menu.hidden));
+    document.addEventListener('click', event => {
+        if (!picker.contains(event.target)) setMenuOpen(false);
     });
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') toggle(false);
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') setMenuOpen(false);
     });
 }
 
-const loadJson = url => fetch(url).then(r => {
-    if (!r.ok) throw new Error(url);
-    return r.json();
+const loadJson = url => fetch(url).then(response => {
+    if (!response.ok) throw new Error(url);
+    return response.json();
 });
-loadJson('assets/config.json').then(async c => {
-    const catalog = await loadJson(c.trees.source);
-    // Places are cities of the cities file, referenced by integer id: name and blason come from there (config can override `image`)
-    const cities = await loadJson(c.cities.source);
-    c.places = c.places.map(p => {
-        const city = cities.find(x => x.id === p.id);
-        if (!city) throw new Error(`Unknown city id ${p.id} in config.places`);
-        return {...p, label: city.name, image: p.image ?? city.image};
-    });
-    applyConfigTheme(c.theme);
-    showHeroImage(c.home?.image, catalog);
-    setHeaderHeight();
-    c.premiumAmounts = c.trees.premiumAmounts;
-    c.searchMinTrees = c.trees.searchMinTrees;
-    c.freePriceTrees = c.trees.freePriceTrees; // c.trees is replaced by the tree list just below
-    c.trees = catalog.filter(t => t.available === true && (!c.trees.offerTypes || c.trees.offerTypes.includes(t.type)))
-        .map(t => ({...c.trees.byType?.[t.type], ...c.trees.byId?.[t.id], id: t.id, label: t.name, image: t.image, latin: t.latin, premium: t.premium === true}));
-    cfg = c;
-    applyDefaultPlace();
-    setupLang();
-    applyLang();
+
+const buildPlacesWithCityNameAndImage = (places, cities) => places.map(place => {
+    const city = cities.find(candidateCity => candidateCity.id === place.id);
+    if (!city) throw new Error(`Unknown city id ${place.id} in config.places`);
+    return {...place, label: city.name, image: place.image ?? city.image};
+});
+
+const buildOfferedTrees = (catalog, treesConfig) => catalog
+    .filter(catalogTree => catalogTree.available === true && (!treesConfig.offerTypes || treesConfig.offerTypes.includes(catalogTree.type)))
+    .map(catalogTree => ({...treesConfig.byType?.[catalogTree.type], ...treesConfig.byId?.[catalogTree.id], id: catalogTree.id, label: catalogTree.name, image: catalogTree.image, latin: catalogTree.latin, premium: catalogTree.premium === true}));
+
+loadJson('assets/config.json').then(async loadedConfig => {
+    const catalog = await loadJson(loadedConfig.trees.source);
+    const cities = await loadJson(loadedConfig.cities.source);
+    const treesConfig = loadedConfig.trees;
+    loadedConfig.places = buildPlacesWithCityNameAndImage(loadedConfig.places, cities);
+    applyConfigTheme(loadedConfig.theme);
+    showHeroImage(loadedConfig.home?.image, catalog);
+    publishHeaderHeightToCss();
+    loadedConfig.premiumAmounts = treesConfig.premiumAmounts;
+    loadedConfig.searchMinTrees = treesConfig.searchMinTrees;
+    loadedConfig.lastTreeIds = treesConfig.lastIds;
+    loadedConfig.defaultStatusFilter = treesConfig.defaultStatusFilter;
+    loadedConfig.freePriceTrees = treesConfig.freePriceTrees;
+    loadedConfig.trees = buildOfferedTrees(catalog, treesConfig);
+    config = loadedConfig;
+    preselectDefaultPlace();
+    applyDefaultStatusFilter();
+    setupLanguagePicker();
+    translateStaticTextsAndRedraw();
 })
-    .catch(err => {
-        console.error(err);
-        app.textContent = `Error: ${err.message}. config.json / trees.json could not be loaded (open the page through a local server).`;
+    .catch(error => {
+        console.error(error);
+        app.textContent = `Error: ${error.message}. config.json / trees.json could not be loaded (open the page through a local server).`;
     });
 
-// The selection is kept in `sel`, so going back to the home page does not lose it
-let view = 'home';
-const showView = v => {
-    view = v;
-    document.getElementById('home').hidden = v !== 'home';
-    app.hidden = v !== 'form';
-    document.getElementById('thanks').hidden = v !== 'thanks';
-    document.getElementById('back').hidden = v !== 'form';
+let currentView = 'home';
+const showView = viewName => {
+    currentView = viewName;
+    document.getElementById('home').hidden = viewName !== 'home';
+    app.hidden = viewName !== 'form';
+    document.getElementById('thanks').hidden = viewName !== 'thanks';
+    document.getElementById('back').hidden = viewName !== 'form';
+    updateStepNavigation();
     scrollTo({top: 0});
 };
 document.getElementById('go').addEventListener('click', () => showView('form'));
 document.getElementById('back').addEventListener('click', () => showView('home'));
+document.getElementById('step-prev').addEventListener('click', () => (selection.step === 0 ? showView('home') : goToStep(selection.step - 1)));
+document.getElementById('step-next').addEventListener('click', () => (currentView === 'home' ? showView('form') : goToStep(selection.step + 1)));
+document.addEventListener('keydown', event => {
+    const isTypingInAField = event.target.closest?.('input, textarea, select');
+    const hasModifierKey = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
+    if (currentView === 'thanks' || hasModifierKey || isTypingInAField) return;
+    const arrowButton = document.getElementById(event.key === 'ArrowDown' ? 'step-next' : event.key === 'ArrowUp' ? 'step-prev' : '');
+    if (!arrowButton || arrowButton.hidden || arrowButton.disabled) return;
+    event.preventDefault();
+    arrowButton.click();
+});
 
-const root = document.documentElement;
-// Theme: config.theme.default is "light" (default), "dark" or "system"; config.theme.toggle: false hides the button
+const rootElement = document.documentElement;
 const storedTheme = () => {
     try {
         return localStorage.getItem('giftgarden-theme');
@@ -526,17 +564,17 @@ const storedTheme = () => {
         return null;
     }
 };
-root.dataset.theme = storedTheme() === 'dark' ? 'dark' : 'light';
-const applyConfigTheme = th => {
-    const toggle = th?.toggle !== false;
-    const mode = (toggle && storedTheme()) || th?.default || 'light';
-    root.dataset.theme = mode === 'system' ? (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light') : mode;
-    document.getElementById('theme').hidden = !toggle;
+rootElement.dataset.theme = storedTheme() === 'dark' ? 'dark' : 'light';
+const applyConfigTheme = themeConfig => {
+    const isToggleEnabled = themeConfig?.toggle !== false;
+    const mode = (isToggleEnabled && storedTheme()) || themeConfig?.default || 'light';
+    rootElement.dataset.theme = mode === 'system' ? (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light') : mode;
+    document.getElementById('theme').hidden = !isToggleEnabled;
 };
 document.getElementById('theme').addEventListener('click', () => {
-    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    rootElement.dataset.theme = rootElement.dataset.theme === 'dark' ? 'light' : 'dark';
     try {
-        localStorage.setItem('giftgarden-theme', root.dataset.theme);
+        localStorage.setItem('giftgarden-theme', rootElement.dataset.theme);
     } catch {
     }
 });

@@ -105,12 +105,14 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
     height: calc(100dvh - var(--hh, 72px));
-    overflow: auto;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 16px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 10px 16px;
     text-align: center
 }
 
@@ -120,34 +122,27 @@ h2 {
 
 #hero {
     flex: 1 1 0;
-    min-height: 80px;
+    min-height: 40px;
     width: 100%;
+    max-width: 100%;
     object-fit: cover;
     border-radius: 12px;
     border: 1px solid var(--line)
 }
 
 #home h2 {
-    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
     line-height: 1.1;
     margin: 0
 }
 
 #home p {
     white-space: pre-line;
+    max-width: 900px;
     color: var(--muted);
-    font-size: 1.05rem;
+    font-size: .95rem;
+    line-height: 1.25;
     margin: 0
-}
-
-#go {
-    font-size: 1.5rem;
-    font-weight: 700;
-    padding: 12px 40px;
-    border-radius: 999px;
-    background: var(--gold);
-    border-color: var(--gold);
-    color: #fff
 }
 
 .choices {
@@ -176,20 +171,6 @@ h2 {
     object-fit: contain
 }
 
-.validate {
-    margin-top: 8px;
-    font-weight: 700;
-    background: var(--gold);
-    border-color: var(--gold);
-    color: #fff
-}
-
-.validate:disabled {
-    background: var(--card);
-    color: var(--muted);
-    border-color: var(--line)
-}
-
 .choice small {
     display: block;
     color: var(--muted);
@@ -209,47 +190,6 @@ h2 {
 .choice:disabled {
     opacity: .5;
     cursor: not-allowed
-}
-
-/* Gardens: dim the content, not the button, so the reason overlay shown on hover stays readable */
-.choice.place:disabled {
-    opacity: 1;
-    position: relative;
-    overflow: hidden
-}
-
-.choice.place:disabled {
-    border-style: dashed;
-    border-color: var(--line);
-    background: transparent
-}
-
-.choice.place:disabled > * {
-    opacity: .4
-}
-
-.choice.place:disabled img {
-    filter: grayscale(1)
-}
-
-.choice.place:disabled span {
-    text-decoration: line-through
-}
-
-.choice.place:disabled[data-reason]:hover::before {
-    content: attr(data-reason);
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px 8px;
-    text-align: center;
-    background: color-mix(in srgb, var(--card) 90%, transparent);
-    color: var(--ink);
-    font-size: .8rem;
-    font-weight: 600
 }
 
 input[type=search] {
@@ -327,6 +267,7 @@ input[type=search] {
 }
 
 .filter-group > span {
+    flex: 0 0 100%;
     color: var(--muted);
     font-size: .8rem
 }
@@ -402,7 +343,6 @@ input[type=search] {
     background: linear-gradient(90deg, transparent, var(--gold), transparent)
 }
 
-/* Dim the card content, not the card itself, so the reason overlay shown on hover stays readable */
 .tree:disabled {
     position: relative;
     overflow: hidden;
@@ -428,7 +368,6 @@ input[type=search] {
     font-weight: 600
 }
 
-/* Premium trees: a light sweep only (no gold border or glow, which made them look selected) */
 .tree.premium {
     position: relative;
     overflow: hidden
@@ -440,7 +379,7 @@ input[type=search] {
     inset: 0;
     background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .55) 50%, transparent 65%);
     transform: translateX(-120%);
-    animation: premium-shine 3.2s ease-in-out infinite;
+    animation: premium-shine 1.6s ease-in-out infinite;
     pointer-events: none
 }
 
@@ -725,4 +664,285 @@ textarea {
     border-radius: 8px;
     background: var(--card);
     color: var(--ink)
+}
+
+#app {
+    padding-bottom: 140px
+}
+
+#stepnav {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px
+}
+
+#stepnav button {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: .85rem;
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .25)
+}
+
+#stepnav button:disabled {
+    opacity: .35;
+    cursor: not-allowed
+}
+
+.slide-next {
+    animation: slide-from-below .3s ease-out
+}
+
+.slide-prev {
+    animation: slide-from-above .3s ease-out
+}
+
+@keyframes slide-from-below {
+    from {
+        opacity: 0;
+        transform: translateY(40px)
+    }
+}
+
+@keyframes slide-from-above {
+    from {
+        opacity: 0;
+        transform: translateY(-40px)
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .slide-next, .slide-prev {
+        animation: none
+    }
+}
+
+section[data-step=place] .choices, section[data-step=budget] .choices {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px
+}
+
+section[data-step=place] .choice, section[data-step=budget] .choice {
+    width: 50%;
+    min-width: min(100%, 280px);
+    padding: 18px 20px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center
+}
+
+section[data-step=place] .choice.place {
+    justify-content: center;
+    gap: 16px
+}
+
+section[data-step=place] .choice.place img {
+    height: 64px;
+    max-width: 64px
+}
+
+section[data-step=message] input, section[data-step=message] textarea, section[data-step=contact] input {
+    padding: 12px 14px;
+    font-size: 1.1rem
+}
+
+#app {
+    max-width: 760px;
+    min-height: calc(100dvh - var(--hh, 72px));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 24px 16px 140px
+}
+
+#app > section {
+    width: 100%;
+    text-align: center
+}
+
+#app h2 {
+    margin: 0 0 24px;
+    font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+    line-height: 1.2
+}
+
+#app .step-sub {
+    margin: -12px 0 20px;
+    color: var(--muted)
+}
+
+#app .choices, #app .trees, #app .filter-group {
+    justify-content: center
+}
+
+#app input[type=search] {
+    max-width: 420px;
+    margin: 0 auto 12px
+}
+
+#app .stack, #app .fields {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: left
+}
+
+#app .fields {
+    grid-template-columns: 1fr
+}
+
+#app #summary {
+    max-width: 520px;
+    margin: 32px auto 0;
+    text-align: left
+}
+
+#go, .choice.ok, .choice.validate {
+    min-width: 12rem;
+    padding: 14px 44px;
+    border-radius: 999px;
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center
+}
+
+:root {
+    --action-gap: 28px
+}
+
+.choice.ok, .choice.validate {
+    justify-self: center;
+    margin-top: var(--action-gap)
+}
+
+.stack .choice.ok {
+    margin-top: calc(var(--action-gap) - 12px)
+}
+
+#go {
+    margin-top: calc(var(--action-gap) - 10px)
+}
+
+#go:disabled, .choice.ok:disabled, .choice.validate:disabled {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+    opacity: .4;
+    cursor: not-allowed
+}
+
+#app #summary .validate {
+    display: block;
+    margin: var(--action-gap) auto 0
+}
+
+#stepper {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 12px
+}
+
+.stepper-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--muted)
+}
+
+.stepper-step:disabled {
+    cursor: default
+}
+
+.stepper-circle {
+    width: 1.9rem;
+    height: 1.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background: var(--line);
+    color: var(--muted);
+    font-weight: 700
+}
+
+.stepper-step.is-done .stepper-circle {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff
+}
+
+.stepper-step.is-current .stepper-circle {
+    background: var(--bg);
+    border-color: var(--gold);
+    color: var(--gold)
+}
+
+.stepper-step.is-done, .stepper-step.is-current {
+    color: var(--ink)
+}
+
+.stepper-step.is-done:hover .stepper-circle {
+    filter: brightness(1.1)
+}
+
+.stepper-line {
+    flex: 1 1 8px;
+    height: 2px;
+    margin-top: .95rem;
+    background: var(--line)
+}
+
+.stepper-line.is-done {
+    background: var(--gold)
+}
+
+@media (max-width: 640px) {
+    .stepper-circle {
+        width: 1.6rem;
+        height: 1.6rem;
+        font-size: .75rem
+    }
+
+    .stepper-line {
+        margin-top: .8rem
+    }
+
+    .stepper-step:not(.is-current) .stepper-label {
+        display: none
+    }
+
+    #hero {
+        flex: 0 1 auto;
+        height: 28dvh;
+        min-height: 40px
+    }
+}
+
+#stepper.is-invisible {
+    visibility: hidden
+}
+
+#thanks .thanks-actions .choice.validate {
+    width: auto;
+    min-height: 0
 }

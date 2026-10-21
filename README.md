@@ -57,6 +57,20 @@ Then open <http://localhost:8000/>.
 
 To set up a new installation, copy `assets/config-example.json` to `assets/config.json` and adapt it. The example file shows every setting and its expected format.
 
+### Tree settings (`config.json` > `trees`)
+
+- `source`: the tree catalogue. Only trees with `"available": true` are offered.
+- `offerTypes`: limits which tree types are offered.
+- `lastIds`: tree ids shown after the other trees of their group (regular or premium).
+- `defaultStatusFilter`: availability filter selected by default in the tree step (`all`, `available`, `sponsored` or `unavailable`; missing = `all`).
+- `searchMinTrees`: the search bar is hidden when fewer trees than this are offered (missing = always shown).
+- `premiumAmounts`, `freePriceTrees`: amounts allowed for premium trees, and trees allowed with a free price.
+- `byType` / `byId`: availability rules, keyed by the tree type or by the tree's integer id in the catalogue (`byId` wins; every key is optional, missing = no restriction):
+  - `byPlace`: `{ "<city id>": { "status": "unavailable" | "available" | "sponsored", "sponsor": "name shown when sponsored", "premium": true } }` (status defaults to `available`).
+  - `note`: key of `texts.<lang>.treeNotes`, shown on the card.
+  - `budgets`: list of budget ids allowed for the tree.
+  - `minAmount` / `maxAmount`: effective amount limits, in euros.
+
 ## Sending requests
 
 The target address is stored base64-encoded in `email.toEncoded` (for example `printf '%s' 'you@example.com' | base64`). The encoding only hides the address from simple scrapers: anyone reading the page code can still decode it.
