@@ -353,7 +353,8 @@
     "formsubmit": true,
     "formsubmitId": "2d4118b3f0d41c31bab25b5efae5723b",
     "label": "GiftGarden",
-    "mailClientDelaySeconds": 4
+    "mailClientDelaySeconds": 4,
+    "minLoaderSeconds": 5
   },
   "texts": {
     "fr": {
@@ -430,9 +431,8 @@
       "phoneInvalid": "Numéro de téléphone invalide",
       "thanks": {
         "title": "Merci {name} !",
-        "text": "Votre demande a bien été envoyée. Voici le récapitulatif de votre commande.",
-        "again": "Faire une autre demande",
-        "home": "Retour à l'accueil",
+        "sent": "Votre demande a bien été envoyée.",
+        "text": "Voici le récapitulatif de votre demande.",
         "textMail": "Voici le récapitulatif de votre demande.",
         "openMail": "Ouvrir ma messagerie"
       },
@@ -455,6 +455,7 @@
       "treeNotes": {
         "shared": "Cet arbre sera partagé avec plusieurs bienfaiteurs."
       },
+      "sending": "Envoi de votre demande en cours…",
       "mailWarning": "Votre messagerie va s'ouvrir pour envoyer un e-mail avec votre demande déjà rédigée. Elle ne nous parviendra que si vous cliquez sur « Envoyer » dans votre messagerie.",
       "paymentNote": "Nous vous contacterons par téléphone pour les détails du règlement. Merci pour votre soutien."
     },
@@ -532,9 +533,8 @@
       "phoneInvalid": "Invalid phone number",
       "thanks": {
         "title": "Thank you {name}!",
-        "text": "Your request has been sent. Here is the summary of your order.",
-        "again": "Make another request",
-        "home": "Back to home",
+        "sent": "Your request has been sent.",
+        "text": "Here is the summary of your request.",
         "textMail": "Here is the summary of your request.",
         "openMail": "Open my mail app"
       },
@@ -557,6 +557,7 @@
       "treeNotes": {
         "shared": "This tree will be shared with several benefactors."
       },
+      "sending": "Sending your request…",
       "mailWarning": "Your mail app will open to send an e-mail with your request already written. It will only reach us once you press “Send” in your mail app.",
       "paymentNote": "We will contact you by phone about the payment details. Thank you for your support."
     }

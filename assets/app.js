@@ -300,22 +300,24 @@ function buildNonClickableTreeCard(tree) {
 }
 
 function renderThanksPage() {
-    const shouldShowMailClientNotice = Boolean(mailWaitingForMailClient) || thanksPageState === 'pending';
-    const areButtonsDisabled = thanksPageState === 'pending' || (Boolean(mailWaitingForMailClient) && !hasMailClientBeenOpened);
+    const isSending = thanksPageState === 'pending';
+    const shouldShowMailClientNotice = Boolean(mailWaitingForMailClient);
+    const areButtonsDisabled = isSending || (Boolean(mailWaitingForMailClient) && !hasMailClientBeenOpened);
     const chosenTree = config.trees.find(candidateTree => candidateTree.id === selection.tree);
     document.getElementById('thanks').replaceChildren(
         buildElement('div', {class: 'thanks-emoji', 'aria-hidden': 'true'}, '🌳'),
         buildElement('h2', {}, translate('thanks.title', {name: selection.name.trim()})),
-        buildElement('p', {}, translate(thanksPageState === 'sent' ? 'thanks.text' : 'thanks.textMail')),
+        ...(isSending ? [buildElement('div', {class: 'sending', role: 'status'}, buildElement('span', {class: 'spinner', 'aria-hidden': 'true'}), buildElement('p', {}, translate('sending')))] : []),
+        ...(thanksPageState === 'sent' ? [buildElement('div', {class: 'sending', role: 'status'}, buildElement('span', {class: 'check', 'aria-hidden': 'true'}, '✓'), buildElement('p', {}, translate('thanks.sent')))] : []),
+        ...(shouldShowMailClientNotice ? [buildElement('div', {class: 'warning', role: 'note'}, buildElement('p', {}, translate('mailWarning')))] : []),
+        buildElement('p', {class: 'thanks-text'}, translate(thanksPageState === 'sent' ? 'thanks.text' : 'thanks.textMail')),
         ...(chosenTree ? [buildNonClickableTreeCard(chosenTree)] : []),
         buildSummaryList(),
-        ...(shouldShowMailClientNotice ? [buildElement('div', {class: 'warning', role: 'note'}, buildElement('p', {}, translate('mailWarning')))] : []),
-        buildElement('div', {class: 'thanks-actions'},
-            ...(shouldShowMailClientNotice
-                ? [buildElement('button', {id: 'open-mail', class: 'choice', disabled: areButtonsDisabled, onclick: () => mailWaitingForMailClient && openMailClient(mailWaitingForMailClient.fields, mailWaitingForMailClient.subject)}, translate('thanks.openMail'))]
-                : []),
-            buildElement('button', {id: 'again', class: 'choice validate', disabled: areButtonsDisabled, onclick: () => resetForm('form')}, translate('thanks.again')),
-            buildElement('button', {id: 'thanks-home', class: 'choice', disabled: areButtonsDisabled, onclick: () => resetForm('home')}, translate('thanks.home'))));
+        ...(shouldShowMailClientNotice
+            ? [buildElement('div', {class: 'thanks-actions'},
+                buildElement('button', {id: 'open-mail', class: 'choice', disabled: areButtonsDisabled, onclick: () => mailWaitingForMailClient && openMailClient(mailWaitingForMailClient.fields, mailWaitingForMailClient.subject)}, translate('thanks.openMail')))]
+            : []));
+    document.getElementById('back').disabled = areButtonsDisabled;
 }
 
 function renderSummary() {
@@ -389,6 +391,8 @@ async function sendMail(place, tree) {
     mailWaitingForMailClient = null;
     renderThanksPage();
     showView('thanks');
+    const minimumLoaderElapsed = new Promise(resolve => setTimeout(resolve, (config.email.minLoaderSeconds ?? 5) * 1000));
+    let isSendConfirmed = false;
     try {
         const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(formSubmitEndpointId())}`, {
             method: 'POST',
@@ -397,12 +401,18 @@ async function sendMail(place, tree) {
         });
         const data = await response.json();
         if (!response.ok || String(data.success) !== 'true') throw new Error(data.message ?? response.status);
-        thanksPageState = 'sent';
-        renderThanksPage();
+        isSendConfirmed = true;
     } catch (error) {
         console.error(error);
-        showThanksPageInMailClientMode(fields, subject);
     }
+    await minimumLoaderElapsed;
+    if (thanksPageState !== 'pending') return;
+    if (!isSendConfirmed) {
+        showThanksPageInMailClientMode(fields, subject);
+        return;
+    }
+    thanksPageState = 'sent';
+    renderThanksPage();
 }
 
 function showHeroImage(configuredImageUrl, catalog) {
@@ -538,12 +548,13 @@ const showView = viewName => {
     document.getElementById('home').hidden = viewName !== 'home';
     app.hidden = viewName !== 'form';
     document.getElementById('thanks').hidden = viewName !== 'thanks';
-    document.getElementById('back').hidden = viewName !== 'form';
+    document.getElementById('back').hidden = viewName === 'home';
+    if (viewName !== 'thanks') document.getElementById('back').disabled = false;
     updateStepNavigation();
     scrollTo({top: 0});
 };
 document.getElementById('go').addEventListener('click', () => showView('form'));
-document.getElementById('back').addEventListener('click', () => showView('home'));
+document.getElementById('back').addEventListener('click', () => (currentView === 'thanks' ? resetForm('home') : showView('home')));
 document.getElementById('step-prev').addEventListener('click', () => (selection.step === 0 ? showView('home') : goToStep(selection.step - 1)));
 document.getElementById('step-next').addEventListener('click', () => (currentView === 'home' ? showView('form') : goToStep(selection.step + 1)));
 document.addEventListener('keydown', event => {

@@ -32,8 +32,10 @@ The visitor picks a place, a budget and a tree, personalises a three-line messag
 The page uses `fetch`, so it must be served over HTTP (not `file://`). From the project directory, any static server works, for example:
 
 ```bash
-python3 -m http.server 8000
+python3 serve.py 8000
 ```
+
+`serve.py` is a plain static server that sends `Cache-Control: no-store`, so the CSS and JavaScript are never cached. On a real host, set the same header on `assets/*.css` (the asset links carry no version suffix).
 
 Then open <http://localhost:8000/>.
 
@@ -42,6 +44,7 @@ Then open <http://localhost:8000/>.
 ```
 .
 ├── index.html            page markup
+├── serve.py              local static server, no caching
 └── assets/
     ├── app.js            behaviour
     ├── style.css         styles (light / dark theme)
@@ -75,9 +78,9 @@ To set up a new installation, copy `assets/config-example.json` to `assets/confi
 
 The target address is stored base64-encoded in `email.toEncoded` (for example `printf '%s' 'you@example.com' | base64`). The encoding only hides the address from simple scrapers: anyone reading the page code can still decode it.
 
-When the visitor validates the form, they go straight to the thank-you page. Behind the scenes:
+When the visitor validates the form, they go straight to the thank-you page. The only way out is the 🏠 button in the header (back to the home page). Behind the scenes:
 
-- **FormSubmit on** (`email.formsubmit` is `true`; it is off by default): the request is sent to FormSubmit. On the first submission, FormSubmit writes to the target address to activate it: click the link you receive. While the answer is awaited, the thank-you page shows a notice and all its buttons are disabled; if the sending is confirmed, the page says so and the notice goes away.
-- **FormSubmit off** (`email.formsubmit` is `false` or missing, the default), **or FormSubmit failed**: the thank-you page tells the visitor that their mail client is about to open with the request prefilled, and that the request only reaches you once they press "Send". The mail client opens a few seconds later (`email.mailClientDelaySeconds`, 4 by default). Until it has opened, all the buttons of the page are disabled; an "Open my mail app" button lets the visitor reopen it, in case the browser blocks the automatic opening.
+- **FormSubmit on** (`email.formsubmit` is `true`; it is off by default): the request is sent to FormSubmit. On the first submission, FormSubmit writes to the target address to activate it: click the link you receive. While the answer is awaited, the thank-you page shows a loader (for at least `email.minLoaderSeconds`, 5 by default) and the home button is disabled; if the sending is confirmed, the page says so. Only if it fails does the mail-client warning appear.
+- **FormSubmit off** (`email.formsubmit` is `false` or missing, the default), **or FormSubmit failed**: the thank-you page tells the visitor that their mail client is about to open with the request prefilled, and that the request only reaches you once they press "Send". The mail client opens a few seconds later (`email.mailClientDelaySeconds`, 4 by default). Until it has opened, the buttons of the page are disabled; an "Open my mail app" button lets the visitor reopen it, in case the browser blocks the automatic opening.
 
 `email.label` (optional) is the display name of the recipient in the mail client, and the first row of the e-mail sent through FormSubmit.

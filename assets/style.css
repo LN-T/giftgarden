@@ -130,6 +130,13 @@ h2 {
     border: 1px solid var(--line)
 }
 
+@media (min-width: 641px) {
+    #hero {
+        max-width: 50%;
+        align-self: center
+    }
+}
+
 #home h2 {
     font-size: clamp(1.5rem, 4vw, 2.3rem);
     line-height: 1.1;
@@ -487,6 +494,12 @@ label {
     color: var(--muted);
     font-size: 1.05rem;
     margin: 0 0 8px
+}
+
+#thanks .thanks-text {
+    margin: 32px 0 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line)
 }
 
 .thanks-emoji {
@@ -945,4 +958,45 @@ section[data-step=message] input, section[data-step=message] textarea, section[d
 #thanks .thanks-actions .choice.validate {
     width: auto;
     min-height: 0
+}
+
+.sending {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0 8px
+}
+
+.sending p {
+    margin: 0;
+    font-weight: 600
+}
+
+.spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid var(--muted);
+    border-top-color: #16a34a;
+    border-radius: 50%;
+    animation: spin .8s linear infinite
+}
+
+.check {
+    color: #16a34a;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .spinner {
+        animation-duration: 2.4s
+    }
 }
