@@ -18,8 +18,16 @@
     "default": "light",
     "toggle": true
   },
+  "siteUrl": "https://ln-t.github.io/giftgarden/",
   "home": {
     "image": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Neuruppin1856.jpg"
+  },
+  "images": {
+    "placeWidth": 120,
+    "heroWidth": 960,
+    "heroCandidates": 5,
+    "flagWidth": 24,
+    "flagHeight": 18
   },
   "cities": {
     "source": "assets/data/cities-FR.json"
@@ -346,11 +354,14 @@
   },
   "customText": {
     "enabled": true,
-    "maxLength": 25
+    "maxLength": 25,
+    "lineMaxLength": 100,
+    "rows": 2
   },
   "email": {
     "toEncoded": "Z2lmdGdhcmRlbi45NUBwcm90b24ubWU=",
     "formsubmit": true,
+    "formsubmitUrl": "https://formsubmit.co/ajax/",
     "formsubmitId": "2d4118b3f0d41c31bab25b5efae5723b",
     "label": "GiftGarden",
     "mailClientDelaySeconds": 4,
@@ -564,10 +575,13 @@
   },
   "contact": {
     "name": {
-      "required": true
+      "required": true,
+      "maxLength": 100
     },
     "phone": {
-      "required": true
+      "required": true,
+      "minDigits": 6,
+      "maxLength": 25
     }
   }
 }

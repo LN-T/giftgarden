@@ -74,6 +74,19 @@ To set up a new installation, copy `assets/config-example.json` to `assets/confi
   - `budgets`: list of budget ids allowed for the tree.
   - `minAmount` / `maxAmount`: effective amount limits, in euros.
 
+## Link preview
+
+The description and Open Graph tags are static, in the `<head>` of `index.html`: link previews do not run JavaScript, so they cannot follow the language switch or read `config.json`. `siteUrl` in `config.json` records the public address; if it changes, update `og:url` in `index.html` too. `og:image` currently points at a Wikimedia picture (a landscape apple-blossom photo from Wikimedia Commons (CC0), independent of `home.image`); replace it with a 1200×630 image hosted on the site (absolute URL).
+
+### Other settings (`config.json`)
+
+Every key is optional; the value shown is the default used when it is missing.
+
+- `customText.lineMaxLength` (100) and `customText.rows` (2): length limit of the two message lines, height of the free-text box. The free-text limit is `customText.maxLength`.
+- `contact.name.maxLength` (100), `contact.phone.minDigits` (6) and `contact.phone.maxLength` (25): limits of the contact fields.
+- `images.placeWidth` (120): width requested for the coats of arms. `images.heroWidth` (960) and `images.heroCandidates` (5): when `home.image` is empty, the home picture is taken from up to this many random trees of the catalogue flagged `can_be_used_by_homepage_giftgarden`, tried one after the other until one loads. `images.flagWidth` (24) and `images.flagHeight` (18): size of the language flags (a size supported by flagcdn).
+- `email.formsubmitUrl` (`https://formsubmit.co/ajax/`): FormSubmit endpoint. If it changes, update `connect-src` in the Content Security Policy too.
+
 ## Sending requests
 
 The target address is stored base64-encoded in `email.toEncoded` (for example `printf '%s' 'you@example.com' | base64`). The encoding only hides the address from simple scrapers: anyone reading the page code can still decode it.

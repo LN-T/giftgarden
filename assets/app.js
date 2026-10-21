@@ -9,7 +9,10 @@ const translate = (path, variables) => {
     return variables ? text.replace(/\{(\w+)\}/g, (match, name) => variables[name] ?? '') : text;
 };
 
-const isValidPhoneNumber = phoneNumber => /^\+?[\d\s().-]{6,25}$/.test(phoneNumber) && phoneNumber.replace(/\D/g, '').length >= 6;
+const isValidPhoneNumber = phoneNumber => {
+    const {minDigits = 6, maxLength = 25} = config.contact?.phone ?? {};
+    return /^\+?[\d\s().-]+$/.test(phoneNumber) && phoneNumber.replace(/^\+/, '').length <= maxLength && phoneNumber.replace(/\D/g, '').length >= minDigits;
+};
 const areContactFieldsValid = () => (!config.contact?.name?.required || selection.name.trim() !== '')
     && (selection.phone.trim() === '' ? !config.contact?.phone?.required : isValidPhoneNumber(selection.phone.trim()));
 
@@ -141,7 +144,7 @@ function render() {
                     goToStep(indexOfStepAfter('place'));
                 }
             },
-            place.image ? buildElement('img', {src: `${place.image}?width=120`, alt: '', loading: 'lazy'}) : '', placeDisplayName(place)))),
+            place.image ? buildElement('img', {src: `${place.image}?width=${config.images?.placeWidth ?? 120}`, alt: '', loading: 'lazy'}) : '', placeDisplayName(place)))),
         buildSection('budget', translate('stepper.budget'), ...budgetChoices),
         buildElement('section', {'data-step': 'tree', hidden: currentStepId !== 'tree'}, buildElement('h2', {}, translate('stepper.tree')),
             ...(config.trees.length >= (config.searchMinTrees ?? 0) ? [buildElement('input', {
@@ -159,14 +162,14 @@ function render() {
             buildElement('div', {class: 'stack'},
                 buildElement('label', {}, translate('messageLine1Label'),
                     buildElement('input', {
-                        id: 'line1', type: 'text', maxlength: 100, value: selection.line1, oninput: event => {
+                        id: 'line1', type: 'text', maxlength: config.customText.lineMaxLength ?? 100, value: selection.line1, oninput: event => {
                             selection.line1 = event.target.value;
                             renderSummary();
                         }
                     })),
                 buildElement('label', {}, translate('messageLine2Label'),
                     buildElement('input', {
-                        id: 'line2', type: 'text', class: 'latin-input', maxlength: 100, value: selection.line2, oninput: event => {
+                        id: 'line2', type: 'text', class: 'latin-input', maxlength: config.customText.lineMaxLength ?? 100, value: selection.line2, oninput: event => {
                             selection.line2 = event.target.value;
                             renderSummary();
                         }
@@ -174,7 +177,7 @@ function render() {
                 buildElement('label', {}, translate('messageLabel'),
                     buildElement('small', {class: 'example'}, translate('messageExample')),
                     buildElement('textarea', {
-                        id: 'text', rows: 2,
+                        id: 'text', rows: config.customText.rows ?? 2,
                         oninput: event => {
                             selection.text = event.target.value;
                             updateMessageCounter();
@@ -188,7 +191,7 @@ function render() {
             buildElement('div', {class: 'fields'},
                 buildElement('label', {}, translate('nameLabel'),
                     buildElement('input', {
-                        id: 'name', type: 'text', maxlength: 100, autocomplete: 'name', placeholder: translate('namePlaceholder'), value: selection.name, oninput: event => {
+                        id: 'name', type: 'text', maxlength: config.contact?.name?.maxLength ?? 100, autocomplete: 'name', placeholder: translate('namePlaceholder'), value: selection.name, oninput: event => {
                             selection.name = event.target.value;
                             renderSummary();
                         }
@@ -394,7 +397,7 @@ async function sendMail(place, tree) {
     const minimumLoaderElapsed = new Promise(resolve => setTimeout(resolve, (config.email.minLoaderSeconds ?? 5) * 1000));
     let isSendConfirmed = false;
     try {
-        const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(formSubmitEndpointId())}`, {
+        const response = await fetch(`${config.email.formsubmitUrl ?? 'https://formsubmit.co/ajax/'}${encodeURIComponent(formSubmitEndpointId())}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json', Accept: 'application/json'},
             body: JSON.stringify({...(config.email.label ? {[translate('mail.source')]: config.email.label} : {}), ...fields, _subject: subject, _template: 'table', _honey: ''}),
@@ -415,10 +418,11 @@ async function sendMail(place, tree) {
     renderThanksPage();
 }
 
-function showHeroImage(configuredImageUrl, catalog) {
+function showHeroImage(homeConfig, imagesConfig, catalog) {
+    const configuredImageUrl = homeConfig?.image;
     const heroImage = document.getElementById('hero');
-    const imageCandidates = configuredImageUrl ? [configuredImageUrl] : catalog.filter(catalogTree => catalogTree.image && catalogTree.can_be_used_by_homepage_giftgarden === true).sort(() => Math.random() - 0.5).slice(0, 5)
-        .flatMap(catalogTree => [catalogTree.image.replace(/\/\d+px-/, '/960px-'), catalogTree.image]);
+    const imageCandidates = configuredImageUrl ? [configuredImageUrl] : catalog.filter(catalogTree => catalogTree.image && catalogTree.can_be_used_by_homepage_giftgarden === true).sort(() => Math.random() - 0.5).slice(0, imagesConfig?.heroCandidates ?? 5)
+        .flatMap(catalogTree => [catalogTree.image.replace(/\/\d+px-/, `/${imagesConfig?.heroWidth ?? 960}px-`), catalogTree.image]);
     let candidateIndex = 0;
     const showNextCandidate = () => {
         if (candidateIndex >= imageCandidates.length) {
@@ -465,7 +469,7 @@ function translateStaticTextsAndRedraw() {
     if (currentView === 'thanks') renderThanksPage();
 }
 
-const languageFlagAndLabel = languageEntry => [...(languageEntry.flag ? [buildElement('img', {class: 'flag', src: `https://flagcdn.com/24x18/${languageEntry.flag}.png`, width: 24, height: 18, alt: ''})] : []), languageEntry.label];
+const languageFlagAndLabel = languageEntry => [...(languageEntry.flag ? [buildElement('img', {class: 'flag', src: `https://flagcdn.com/${config.images?.flagWidth ?? 24}x${config.images?.flagHeight ?? 18}/${languageEntry.flag}.png`, width: config.images?.flagWidth ?? 24, height: config.images?.flagHeight ?? 18, alt: ''})] : []), languageEntry.label];
 
 function setupLanguagePicker() {
     const {available, default: defaultLanguage} = config.languages;
@@ -523,7 +527,7 @@ loadJson('assets/config.json').then(async loadedConfig => {
     const treesConfig = loadedConfig.trees;
     loadedConfig.places = buildPlacesWithCityNameAndImage(loadedConfig.places, cities);
     applyConfigTheme(loadedConfig.theme);
-    showHeroImage(loadedConfig.home?.image, catalog);
+    showHeroImage(loadedConfig.home, loadedConfig.images, catalog);
     publishHeaderHeightToCss();
     loadedConfig.premiumAmounts = treesConfig.premiumAmounts;
     loadedConfig.searchMinTrees = treesConfig.searchMinTrees;
